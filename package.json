@@ -1,0 +1,45 @@
+{
+  "name": "4fun-upload-playground",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Wellers0n/4fun-upload",
+  "author": "Wellerson <wllrsn.c@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "yarn start:server & yarn start:client",
+    "dev:client": "yarn workspace @4fun-upload/client run dev",
+    "dev:server": "yarn workspace @4fun-upload/server run dev"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write --single-quote true --trailing-comma all --print-width 100",
+      "yarn jest:lint --passWithNoTests",
+      "git add"
+    ],
+    "*.ts": [
+      "prettier --write --single-quote true --trailing-comma all --print-width 100",
+      "eslint --fix",
+      "git add"
+    ],
+    "*.tsx": [
+      "prettier --write --single-quote true --trailing-comma all --print-width 100",
+      "eslint --fix",
+      "git add"
+    ],
+    "*.yml": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "pre-commit": "lint-staged",
+  "workspaces": {
+    "packages": [
+      "packages/client",
+      "packages/server"
+    ]
+  },
+  "dependencies": {
+    "esbuild": "^0.15.15"
+  }
+}
