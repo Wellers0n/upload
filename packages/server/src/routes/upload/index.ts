@@ -1,6 +1,6 @@
-import {Router} from 'express'
+import { Router } from 'express'
 import UploadTransactionFileController from '../../controllers/UploadTransactionFileController'
-import {storage} from "../../middleware/upload";
+import { storage } from "../../middleware/upload";
 import multer from "multer";
 
 const upload = multer({
@@ -9,6 +9,6 @@ const upload = multer({
 
 const uploadRoutes = Router()
 
-uploadRoutes.patch('/upload-transaction-file', upload.single('transaction-file'), UploadTransactionFileController)
+uploadRoutes.post('/transaction-file', upload.single(''), UploadTransactionFileController)
 
-export {uploadRoutes}
+export { uploadRoutes }
