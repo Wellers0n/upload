@@ -1,43 +1,29 @@
 // import {S3} from 'aws-sdk'
-import {resolve} from "path";
-import * as fs from "fs";
-import {tmpFolder} from "../../helpers/tmpFolder";
+import { resolve } from "path";
+const { readFileSync, promises: fsPromises } = require('fs');
+import { tmpFolder } from "../../helpers/tmpFolder";
 import mime from "mime";
-import {keys} from "../../configs/keys";
+import transactionFormatting from "./helpers/transactionFormatting";
 
 const UploadTransactionFileService = async (file: string) => {
+    
     const originalName = resolve(tmpFolder, file)
     const ContentType = mime.getType(originalName)
-    const fileContent = await fs.promises.readFile(originalName)
 
-    console.log(ContentType)
-    // const user = {
-    //     file: false
-    // }
+    if (ContentType !== "text/plain") {
+        return { error: true, message: "File type invalid, send a .text!" }
+    }
 
-    // const client = new S3({
-    //     region: 'sa-east-1'
-    // })
+    const contents = await fsPromises.readFile(originalName, 'utf-8');
 
-    // if (user.file) {
-    //     await client.deleteObject({
-    //         Bucket: keys.s3.bucket,
-    //         Key: `avatar.jpg`
-    //     }).promise()
-    // }
+    const transactions = contents.split(/\r?\n/);
 
-    // @ts-ignore
-    // await client.putObject({
-    //     Bucket: keys.s3.bucket,
-    //     Key: file,
-    //     ACL: 'public-read',
-    //     Body: fileContent,
-    //     ContentType
-    // }).promise()
+    const transactionFormatted = transactionFormatting(transactions)
 
-    await fs.promises.unlink(originalName)
+    console.log(transactionFormatted)
 
-    // return `${keys.s3.url}/${file}`
+    return { error: false, message: "Successful upload" }
+    
 }
 
 export default UploadTransactionFileService
