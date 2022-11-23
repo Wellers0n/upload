@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import UploadTransactionFileService from "../../services/UploadTransactionFileService";
+import UploadTransactionFileService from "../../../services/UploadServices/UploadTransactionFile";
 
 
 const UploadTransactionFileController = async (request: Request, response: Response) => {

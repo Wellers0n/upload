@@ -1,10 +1,10 @@
 // import {S3} from 'aws-sdk'
 import { resolve } from "path";
-const { readFileSync, promises: fsPromises } = require('fs');
-import { tmpFolder } from "../../helpers/tmpFolder";
+const { promises: fsPromises } = require('fs');
+import { tmpFolder } from "../../../helpers/tmpFolder";
 import mime from "mime";
 import transactionFormatting from "./helpers/transactionFormatting";
-import db from '../../models'
+import db from '../../../models'
 
 const UploadTransactionFileService = async (file: string) => {
 
