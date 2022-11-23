@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+  database:
+    container_name: postgres_container
+    build:
+      context: packages/database
+      dockerfile: Dockerfile
+    image: postgres_container
+    restart: always
+    ports:
+      - 5431:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - './packages/database/volume/bk:/bk'
+      - './packages/database/volume/data:/var/lib/postgresql/data'
+    networks:
+      - network-upload
+networks:
+  network-upload:
+    driver: bridge

@@ -9,7 +9,8 @@
   "scripts": {
     "start": "yarn start:server & yarn start:client",
     "dev:client": "yarn workspace @4fun-upload/client run dev",
-    "dev:server": "yarn workspace @4fun-upload/server run dev"
+    "dev:server": "yarn workspace @4fun-upload/server run dev",
+    "migrate:server": "yarn workspace @4fun-upload/server run migrate"
   },
   "lint-staged": {
     "*.js": [
