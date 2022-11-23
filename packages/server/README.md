@@ -1,31 +1,27 @@
-# AWS-DEPLOY
-
+# UPLOAD
 ### Prerequisites
 
 - Node
-- NPM
+- Yarn
+- PSQL
+- postgres
 
-### Installing
+### Postgres init
 
 At the root directory, run the following commands:
 
 ```sh
-yarn or npm install
+docker-compose up --build -d
 ```
 
 ```sh
-yarn start or npm run start
+ DATABASE_URL=postgres://postgres:postgres@localhost:5431/uploaddb  npm run migrate up
 ```
-
-## .env
-
-You need to create a `.env` file in the root, see the keys in `.env.example`
 
 ## Built With
 
 - Node.JS
 - Typescript
-- AWS S3
 
 ## Versioning
 

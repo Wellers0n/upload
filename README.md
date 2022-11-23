@@ -22,21 +22,40 @@
   
   ##### [Frontend](https://github.com/Wellers0n/4fun-upload/tree/master/packages/client)
   ##### [Backend](https://github.com/Wellers0n/4fun-upload/tree/master/packages/server)
-  
+## Start postgres
+
+### Init server
+
+### init docker-componse (postgres)
+
+At the root directory, run the following commands:
+
+```sh
+docker-compose up --build -d
+```
+
+```sh
+DATABASE_URL=postgres://postgres:postgres@localhost:5431/uploaddb yarn migrate:server up
+```
+
+### kill docker
+
+```sh
+docker-compose down -v
+```
+
 ## Initing in the your PC
 
 - For clone the project `git clone https://github.com/Wellers0n/4fun-upload.git`
 - Enter in the folder `cd 4fun-upload/`
-- To install project dependency: `yarn install`
+- To install project dependency: `yarn`
 - After the installation of the dependencies `yarn start` in the default directory
-
 ## Stack used
 
 [ReactJS](https://reactjs.org/)<br/>
 [KoaJS](https://koajs.com/)<br/>
-[MongoDB](https://www.mongodb.com/)<br/>
-[GraphQL](https://graphql.org/)<br/>
-[Relay](https://relay.dev/)<br/>
+[Postgresql](https://www.postgresql.org/)<br/>
+[Postgresql](https://www.postgresql.org/)<br/>
 [Yarn](https://yarnpkg.com/en/)<br/>
 [WorkSpaces](https://yarnpkg.com/lang/en/docs/workspaces/)<br/>
 [Styled-Components](https://www.styled-components.com/)<br/>
