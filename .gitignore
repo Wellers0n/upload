@@ -74,5 +74,3 @@ differencify_reports
 .vscode
 .yarn
 .yarnrc
-
-packages/database/volume
