@@ -27,6 +27,7 @@
     "lodash": "4.17.21",
     "mime": "^3.0.0",
     "mongoose": "6.0.5",
+    "morgan": "^1.10.0",
     "multer": "^1.4.4",
     "node-pg-migrate": "^6.2.2",
     "pg": "^8.8.0",

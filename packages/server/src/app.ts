@@ -3,6 +3,7 @@ import 'dotenv/config'
 import express from 'express'
 import 'express-async-errors'
 import cors from 'cors'
+import morgan from 'morgan'
 
 import { routes } from './routes'
 
@@ -20,6 +21,7 @@ dotenv.config()
 
 app.use(cors())
 app.use(express.json({}))
+app.use(morgan('combined'))
 app.use(express.urlencoded({ extended: true }))
 app.use(routes)
 app.use('/tmp', express.static(`${tmpFolder}`))
