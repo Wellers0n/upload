@@ -18,6 +18,12 @@ docker-compose up --build -d
  DATABASE_URL=postgres://postgres:postgres@localhost:5431/uploaddb  npm run migrate up
 ```
 
+### Connect postgres
+
+<p align="center">
+    <img src="./connect-postgres.png" />
+</p>
+
 ## Built With
 
 - Node.JS
