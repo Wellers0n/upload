@@ -20,6 +20,11 @@ docker-compose up --build -d
 
 ### Connect postgres
 
+USER=postgres
+PASSWORD=postgres
+DB=uploaddb
+URL=postgres://postgres:postgres@localhost:5431/uploaddb
+
 <p align="center">
     <img src="./connect-postgres.png" />
 </p>
