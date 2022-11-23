@@ -8,10 +8,15 @@ import { routes } from './routes'
 
 import { keys } from './configs/keys'
 import {tmpFolder} from "./helpers/tmpFolder";
+import './models'
 
 const port = keys.port || 3001
 
 const app = express()
+
+import * as dotenv from 'dotenv'
+
+dotenv.config()
 
 app.use(cors())
 app.use(express.json({}))

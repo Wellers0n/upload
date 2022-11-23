@@ -18,9 +18,6 @@ export interface IKeysProps {
 let keys: IKeysProps
 
 switch (NODE_ENV) {
-    case 'test':
-        keys = staging
-        break
     case 'staging':
         keys = staging
         break
