@@ -1,4 +1,5 @@
-# UPLOAD
+# Server
+
 ### Prerequisites
 
 - Node
