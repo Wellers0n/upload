@@ -2,7 +2,7 @@ import { Request, Response } from 'express'
 import UploadServices from "../../../services/UploadServices";
 
 
-const UploadTransactionFileController = async (request: Request, response: Response) => {
+const TransactionFile = async (request: Request, response: Response) => {
     const { file } = request
 
     if (!file) {
@@ -16,4 +16,4 @@ const UploadTransactionFileController = async (request: Request, response: Respo
     return response.status(200).json({ error, message })
 }
 
-export default UploadTransactionFileController
+export default TransactionFile
