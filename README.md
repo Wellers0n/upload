@@ -22,6 +22,11 @@
   
   ##### [Frontend](https://github.com/Wellers0n/4fun-upload/tree/master/packages/client)
   ##### [Backend](https://github.com/Wellers0n/4fun-upload/tree/master/packages/server)
+  
+## File test
+
+send [sales.txt](https://github.com/Wellers0n/4fun-upload/blob/main/packages/server/sales.txt)
+
 ## Init database
 
 ### init docker-componse (postgres)
