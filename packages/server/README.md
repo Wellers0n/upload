@@ -16,7 +16,7 @@ docker-compose up --build -d
 ```
 
 ```sh
- DATABASE_URL=postgres://postgres:postgres@localhost:5431/uploaddb  npm run migrate up
+DATABASE_URL=postgres://postgres:postgres@localhost:5431/uploaddb yarn migrate:server up
 ```
 
 ### Connect postgres
