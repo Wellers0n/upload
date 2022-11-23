@@ -7,7 +7,7 @@ export async function getUser(token: string | undefined) {
   try {
     const decodedToken: any = jwt.verify(token, "batman");
 
-    const user = await db.Users.findOne({ _id: decodedToken.id });
+    const user = await db.Users.findOne({ where: { _id: decodedToken.id } });
 
     return {
       user,

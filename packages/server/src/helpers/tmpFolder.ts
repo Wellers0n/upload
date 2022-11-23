@@ -1,3 +1,3 @@
-import {resolve} from "path";
+import { resolve } from "path";
 
 export const tmpFolder = resolve(__dirname, '..', 'tmp')
