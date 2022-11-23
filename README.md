@@ -22,9 +22,7 @@
   
   ##### [Frontend](https://github.com/Wellers0n/4fun-upload/tree/master/packages/client)
   ##### [Backend](https://github.com/Wellers0n/4fun-upload/tree/master/packages/server)
-## Start postgres
-
-### Init server
+## Init database
 
 ### init docker-componse (postgres)
 
@@ -34,11 +32,13 @@ At the root directory, run the following commands:
 docker-compose up --build -d
 ```
 
+Wait 15 sec to run the following commands:
+
 ```sh
 DATABASE_URL=postgres://postgres:postgres@localhost:5431/uploaddb yarn migrate:server up
 ```
 
-### kill docker
+## kill docker-compose
 
 ```sh
 docker-compose down -v
