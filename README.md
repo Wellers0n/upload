@@ -55,7 +55,8 @@ docker-compose down -v
 [ReactJS](https://reactjs.org/)<br/>
 [KoaJS](https://koajs.com/)<br/>
 [Postgresql](https://www.postgresql.org/)<br/>
-[Postgresql](https://www.postgresql.org/)<br/>
+[Docker](https://www.docker.com/)<br/>
+[Docker-compose](https://docs.docker.com/compose/)<br/>
 [Yarn](https://yarnpkg.com/en/)<br/>
 [WorkSpaces](https://yarnpkg.com/lang/en/docs/workspaces/)<br/>
 [Styled-Components](https://www.styled-components.com/)<br/>
