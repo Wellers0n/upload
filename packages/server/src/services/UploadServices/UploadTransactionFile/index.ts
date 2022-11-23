@@ -1,4 +1,3 @@
-// import {S3} from 'aws-sdk'
 import { resolve } from "path";
 const { promises: fsPromises } = require('fs');
 import { tmpFolder } from "../../../helpers/tmpFolder";

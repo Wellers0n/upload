@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import UploadTransactionFileService from "../../../services/UploadServices/UploadTransactionFile";
+import UploadServices from "../../../services/UploadServices";
 
 
 const UploadTransactionFileController = async (request: Request, response: Response) => {
@@ -11,7 +11,7 @@ const UploadTransactionFileController = async (request: Request, response: Respo
 
     console.log(file)
 
-    const { error, message } = await UploadTransactionFileService(file.filename)
+    const { error, message } = await UploadServices.UploadTransactionFile(file.filename)
 
     return response.status(200).json({ error, message })
 }
