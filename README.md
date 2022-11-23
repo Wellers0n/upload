@@ -23,6 +23,12 @@
   ##### [Frontend](https://github.com/Wellers0n/4fun-upload/tree/master/packages/client)
   ##### [Backend](https://github.com/Wellers0n/4fun-upload/tree/master/packages/server)
   
+## Initing in the your PC
+
+    - For clone the project `git clone https://github.com/Wellers0n/4fun-upload.git`
+    - Enter in the folder `cd 4fun-upload/`
+    - To install project dependency: `yarn`
+
 ## File test
 
 send [sales.txt](https://github.com/Wellers0n/4fun-upload/blob/main/packages/server/sales.txt)
@@ -49,12 +55,6 @@ DATABASE_URL=postgres://postgres:postgres@localhost:5431/uploaddb yarn migrate:s
 docker-compose down -v
 ```
 
-## Initing in the your PC
-
-- For clone the project `git clone https://github.com/Wellers0n/4fun-upload.git`
-- Enter in the folder `cd 4fun-upload/`
-- To install project dependency: `yarn`
-- After the installation of the dependencies `yarn start` in the default directory
 ## Stack used
 
 [ReactJS](https://reactjs.org/)<br/>
