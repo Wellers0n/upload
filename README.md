@@ -25,9 +25,9 @@
   
 ## Initing in the your PC
 
-    - For clone the project `git clone https://github.com/Wellers0n/4fun-upload.git`
-    - Enter in the folder `cd 4fun-upload/`
-    - To install project dependency: `yarn`
+- For clone the project `git clone https://github.com/Wellers0n/4fun-upload.git`
+- Enter in the folder `cd 4fun-upload/`
+- To install project dependency: `yarn`
 
 ## File test
 
