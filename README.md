@@ -22,7 +22,11 @@
   
   ##### [Frontend](https://github.com/Wellers0n/4fun-upload/tree/master/packages/client)
   ##### [Backend](https://github.com/Wellers0n/4fun-upload/tree/master/packages/server)
-  
+
+
+## Node version
+
+Use node `v18.12.1`
 ## Initing in the your PC
 
 - For clone the project `git clone https://github.com/Wellers0n/4fun-upload.git`
