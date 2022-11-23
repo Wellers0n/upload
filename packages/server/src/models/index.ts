@@ -24,7 +24,6 @@ const sequelize = new Sequelize(
 fs
     .readdirSync(__dirname)
     .filter(folderFile => {
-        console.log(`folderFile`, folderFile)
         // this is not a folder, must return to avoid crash
         if (folderFile.indexOf('.') > 0) return null
 
@@ -34,13 +33,12 @@ fs
     })
     .forEach(async file => {
         // eslint-disable-next-line @typescript-eslint/no-var-requires
-        // console.log(file)
         const model = require(path.join(__dirname, file))(sequelize, DataTypes)
         db[model.name] = model
     })
 
 Object.keys(db).forEach(modelName => {
-    if (db[modelName].associate) {  
+    if (db[modelName].associate) {
         db[modelName].associate(db)
     }
 })

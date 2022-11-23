@@ -13,6 +13,7 @@
   "author": "Wellerson",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cors": "2.8.5",
     "cron": "1.8.2",
     "crypto": "^1.0.1",
