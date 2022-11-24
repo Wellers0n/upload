@@ -1,12 +1,11 @@
 
 import React, { Suspense } from "react";
+import Router from "./Router"
 
 function App() {
-
     return (
         <Suspense fallback={"Loading..."}>
-            here
-            {/* <Router /> */}
+            <Router />
         </Suspense>
     );
 }
