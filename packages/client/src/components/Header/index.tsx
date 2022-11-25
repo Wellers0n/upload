@@ -9,7 +9,7 @@ const Header = () => {
     <Container>
       <Items>
         <Item onClick={() => navigate("/")}>Home</Item>
-        <Item onClick={() => navigate("/transaction")}>Transaction</Item>
+        <Item onClick={() => navigate("/transactions")}>Transactions</Item>
       </Items>
       <Items>
         <Item onClick={() => {
