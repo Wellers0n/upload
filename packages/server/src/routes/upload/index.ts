@@ -10,6 +10,6 @@ const upload = multer({
 
 const uploadRoutes = Router()
 
-uploadRoutes.post('/transaction-file', upload.single(''), authentication, UploadController.TransactionFile)
+uploadRoutes.post('/transaction-file', upload.single('file'), authentication, UploadController.TransactionFile)
 
 export { uploadRoutes }
