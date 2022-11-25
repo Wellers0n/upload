@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  display: flex;
-  height: 100vh;
+  
   width: 100%;
 `;
 
 export const Wrapper = styled.div`
   flex: 2;
+  height: 70vh;
   background-color: #fff;
   display: flex;
   justify-content: center;
