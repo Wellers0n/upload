@@ -11,6 +11,7 @@ import {
 // components
 import ButtonMui from '@mui/material/Button';
 import Alert from "../../components/Alert";
+import Header from "../../components/Header";
 import Snackbar from '@mui/material/Snackbar';
 import Stack from '@mui/material/Stack';
 
@@ -65,6 +66,7 @@ const Home = () => {
 
   return (
     <Container>
+      <Header />
       <Wrapper>
         <Box>
           <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
@@ -86,7 +88,7 @@ const Home = () => {
               <a
                 href={"./sales.txt"}
                 download>
-                Download file test
+                Download test file
               </a>
             </ButtonMui>
           </Stack>
