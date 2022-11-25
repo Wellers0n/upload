@@ -38,6 +38,8 @@ export const Button = styled.button`
   border-radius: 5px;
   font-weight: bold;
   font-size: 16px;
+  cursor: pointer;
+
 `
 export const Login = styled.button`
   color: #363636;
