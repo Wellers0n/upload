@@ -9,20 +9,20 @@ const Register = React.lazy(() => import("./routes/Register"));
 const PageNotFound = React.lazy(() => import("./routes/404"));
 
 const router = () => {
-    return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/" element={
-                    <PrivateRouter>
-                        <Home />
-                    </PrivateRouter>
-                } />
-                <Route path="*" element={<PageNotFound />} />
-            </Routes>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/" element={
+          <PrivateRouter>
+            <Home />
+          </PrivateRouter>
+        } />
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
+    </BrowserRouter>
+  );
 };
 
 export default router;
