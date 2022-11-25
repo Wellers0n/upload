@@ -2,18 +2,20 @@ import db from '../../../models'
 
 
 type ListType = {
-    limit: number,
-    offset: number
+  limit: number,
+  offset: number
 }
-const List = async ({ limit = 10, offset = 0 }: ListType) => {
+const List = async ({ limit, offset }: ListType) => {
 
-    const transactions = await db.Transactions.findAll({
-        limit, offset, order: [
-            ['createdAt', 'DESC'],
-        ],
-    });
+  console.log(limit)
 
-    return { error: false, transactions }
+  const transactions = await db.Transactions.findAll({
+    limit, offset, order: [
+      ['createdAt', 'DESC'],
+    ],
+  });
+
+  return { error: false, transactions }
 
 }
 
