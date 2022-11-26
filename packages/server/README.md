@@ -9,7 +9,7 @@
 
 ### Docs
 
-Visit `http://localhost:3001/docs/` for more information about the documentation
+Visit [http://localhost:3001/docs/](http://localhost:3001/docs/) for more information about the documentation
 
 <p align="center">
     <img src="./docs.png" />
