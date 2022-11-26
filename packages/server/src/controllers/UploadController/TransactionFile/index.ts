@@ -6,7 +6,7 @@ const TransactionFile = async (request: Request, response: Response) => {
     const { file } = request
 
     if (!file) {
-        return response.status(400).json({ error: true, message: "File not found" })
+        return response.status(404).json({ error: true, message: "File not found" })
     }
 
     console.log(file)

@@ -1,0 +1,24 @@
+{
+  "definition": {
+    "openapi": "3.0.0",
+    "info": {
+      "title": "4fun-upload API",
+      "version": "1.0.0"
+    },
+    "components": {
+      "securitySchemes": {
+        "token": {
+          "type": "apiKey",
+          "in": "header",
+          "name": "Authorization"
+        }
+      }
+    }
+  },
+  "apis": [
+    "./src/routes/upload/*.ts",
+    "./src/routes/transaction/*.ts",
+    "./src/routes/session/*.ts",
+    "./src/routes/health/*.ts"
+  ]
+}
