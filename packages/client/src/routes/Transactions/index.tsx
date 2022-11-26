@@ -12,6 +12,8 @@ import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 
 import axios from '../../axios'
+import { Button } from "./styles";
+import { Stack } from "@mui/material";
 
 type rowsType = {
   type: number
@@ -26,12 +28,14 @@ type rowsType = {
 
 const Transactions = () => {
   const [rows, setRows] = useState<rowsType[]>([])
+  const [offset, setOffset] = useState(1)
 
 
   const getData = async () => {
     const { data } = await axios.get('/transaction/list', {
       params: {
-        limit: 20
+        limit: offset * 10,
+
       }
     });
 
@@ -41,7 +45,7 @@ const Transactions = () => {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [offset]);
 
   return (
     <Container>
@@ -82,6 +86,12 @@ const Transactions = () => {
             ))}
           </TableBody>
         </Table>
+        {!rows.length &&
+          <Stack alignItems={"center"} padding={5}>
+            <div>No transaction data</div>
+          </Stack>
+        }
+        <Button onClick={() => setOffset((val) => val + 1)} >Carregar mais </Button>
       </TableContainer>
     </Container>
   )
