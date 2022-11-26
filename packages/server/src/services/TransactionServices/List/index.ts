@@ -7,8 +7,6 @@ type ListType = {
 }
 const List = async ({ limit, offset }: ListType) => {
 
-  console.log(limit)
-
   const transactions = await db.Transactions.findAll({
     limit, offset, order: [
       ['createdAt', 'DESC'],
