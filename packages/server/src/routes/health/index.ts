@@ -27,7 +27,20 @@ const healthRoutes = Router()
  *              example:
  *                message: Server is fine 🔥
  *                error: false
- * 
+ *       401:
+ *         description: Error
+ *         content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                message:
+ *                  type: string
+ *                error:
+ *                  type: boolean
+ *              example:
+ *                message: Not authorized!
+ *                error: true
  */
 healthRoutes.get('/', authentication, HealthController)
 
