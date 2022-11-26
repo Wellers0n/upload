@@ -7,17 +7,14 @@
 - PSQL
 - postgres
 
-### Postgres init
+### Docs
 
-At the root directory, run the following commands:
+Visit `http://localhost:3001/docs/` for more information about the documentation
 
-```sh
-docker-compose up --build -d
-```
+<p align="center">
+    <img src="./docs.png" />
+</p>
 
-```sh
-DATABASE_URL=postgres://postgres:postgres@localhost:5431/uploaddb yarn migrate:server up
-```
 
 ### Connect postgres
 
