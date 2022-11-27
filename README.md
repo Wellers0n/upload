@@ -38,10 +38,6 @@ Use node `v18.12.1`
 
 Visit [http://localhost:3001/docs/](http://localhost:3001/docs/) for more information about the documentation
 
-## File test
-
-send [sales.txt](https://github.com/Wellers0n/4fun-upload/blob/main/packages/server/sales.txt)
-
 ## Init database
 
 ### init docker-componse (postgres)
