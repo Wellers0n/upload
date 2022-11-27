@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "yarn dev:server & yarn dev:client",
     "dev:client": "yarn workspace @4fun-upload/client run dev",
+    "test:client": "yarn workspace @4fun-upload/client run test",
     "dev:server": "yarn workspace @4fun-upload/server run dev",
     "migrate:server": "yarn workspace @4fun-upload/server run migrate"
   },
