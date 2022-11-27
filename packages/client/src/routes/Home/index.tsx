@@ -18,7 +18,7 @@ import Stack from '@mui/material/Stack';
 import axios from '../../axios'
 
 const Home = () => {
-  const [files, setFiles] = useState([]);
+  const [file, setFile] = useState<{ name: string }>({ name: "" });
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [open, setOpen] = useState(false);
   const [error, setError] = useState(false);
@@ -28,7 +28,7 @@ const Home = () => {
 
       const form = new FormData();
 
-      form.append('file', files[0])
+      form.append('file', file)
 
       const response = await axios?.post('/upload/transaction-file', form, {
         headers: {
@@ -41,7 +41,7 @@ const Home = () => {
 
       handleClick()
 
-
+      setFile({})
 
     } catch (error: any) {
       setSnackbarMessage(error?.response?.data?.message)
@@ -74,11 +74,14 @@ const Home = () => {
               {snackbarMessage}
             </Alert>
           </Snackbar>
+          <Stack marginBottom={5}>
+            File: {file?.name || "no content"}
+          </Stack>
           <Stack spacing={1} direction={'row'}>
             <ButtonMui variant="contained" component="label" style={{ backgroundColor: "#D7FF61", color: "#363636" }}>
               Upload
               <input
-                onChange={(e: any) => setFiles(e.target.files)}
+                onChange={(e: any) => setFile(e.target.files[0])}
                 title="file"
                 hidden
                 accept="text/*"
