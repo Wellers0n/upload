@@ -1,5 +1,4 @@
-import React from "react"
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import Input from "../../../components/Input";
 
 
@@ -14,6 +13,6 @@ describe("Home", () => {
         placeholder={"Enter your password"} />
     )
 
-    expect(true).toBeTruthy()
+    expect(screen.getByPlaceholderText("Enter your password")).toBeInTheDocument()
   });
 })

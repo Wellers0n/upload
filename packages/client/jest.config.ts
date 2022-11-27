@@ -1,4 +1,9 @@
-export default {
+import type { Config } from '@jest/types';
+
+
+const config: Config.InitialOptions = {
+  preset: 'ts-jest',
+  displayName: 'client',
   testEnvironment: "jsdom",
   transformIgnorePatterns: ['/node_modules/', './dist'],
   transform: {
@@ -11,3 +16,5 @@ export default {
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
 }
+
+export default config
