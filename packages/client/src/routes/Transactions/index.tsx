@@ -91,7 +91,7 @@ const Transactions = () => {
             <div>No transaction data</div>
           </Stack>
         }
-        <Button onClick={() => setOffset((val) => val + 1)} >Carregar mais</Button>
+        <Button onClick={() => setOffset((val) => val + 1)} >Load more</Button>
       </TableContainer>
     </Container>
   )
