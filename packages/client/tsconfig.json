@@ -1,18 +1,20 @@
 {
-  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "lib": [
-      "esnext",
-      "dom"
-    ] /* Specify library files to be included in the compilation. */,
-    "allowJs": false /* Allow javascript files to be compiled. */,
-    "checkJs": false /* Report errors in .js files. */,
-    "jsx": "react" /* Specify JSX code generation: 'preserve', 'react-native', or 'react'. */,
-    "types": [
-      "react-dom/experimental"
-    ]
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "allowJs": false,
+    "skipLibCheck": false,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx"
   },
-  "include": [
-    "./src/**/*"
-  ]
+  "include": ["./src"]
 }
