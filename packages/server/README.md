@@ -1,4 +1,8 @@
-# Server
+<p>
+   <h1 align="center">Server</h1>
+<p/>
+
+<br/>
 
 ### Prerequisites
 
