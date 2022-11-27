@@ -16,6 +16,7 @@ import Snackbar from '@mui/material/Snackbar';
 import Stack from '@mui/material/Stack';
 
 import axios from '../../axios'
+import auth from "../../auth";
 
 const Home = () => {
   const [file, setFile] = useState<{ name: string }>({ name: "" });
@@ -32,7 +33,9 @@ const Home = () => {
 
       const response = await axios?.post('/upload/transaction-file', form, {
         headers: {
-          'Content-Type': 'multipart/form-data'
+          'Content-Type': 'multipart/form-data',
+          Authorization: auth()
+
         }
       })
       setError(false)
@@ -41,7 +44,7 @@ const Home = () => {
 
       handleClick()
 
-      setFile({})
+      setFile({ name: "" })
 
     } catch (error: any) {
       setSnackbarMessage(error?.response?.data?.message)

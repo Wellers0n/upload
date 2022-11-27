@@ -14,6 +14,7 @@ import Table from '@mui/material/Table';
 import axios from '../../axios'
 import { Button } from "./styles";
 import { Stack } from "@mui/material";
+import auth from "../../auth";
 
 type rowsType = {
   type: number
@@ -33,6 +34,9 @@ const Transactions = () => {
 
   const getData = async () => {
     const { data } = await axios.get('/transaction/list', {
+      headers: {
+        Authorization: auth()
+      },
       params: {
         limit: offset * 10,
 
