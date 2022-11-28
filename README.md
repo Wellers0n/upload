@@ -54,6 +54,10 @@ Wait 15 sec to run the following commands:
 DATABASE_URL=postgres://postgres:postgres@localhost:5431/uploaddb yarn migrate:server up
 ```
 
+## Start project
+
+- Enter in the root dir `yarn dev`
+
 ## kill docker-compose
 
 ```sh
