@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react"
-import { Container } from "./styles";
+import styled from "styled-components";
 
 // components
-import Header from "../../components/Header";
+import Header from "../components/Header";
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
@@ -11,10 +11,9 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 
-import axios from '../../axios'
-import { Button } from "./styles";
+import axios from '../axios'
 import { Stack } from "@mui/material";
-import auth from "../../auth";
+import auth from "../auth";
 
 type rowsType = {
   type: number
@@ -102,3 +101,18 @@ const Transactions = () => {
 };
 
 export default Transactions
+
+export const Container = styled.div`
+  width: 100%;
+`;
+
+export const Button = styled.button`
+  background-color: #D7FF61;
+  height: 50px;
+  border: none;
+  width: 100%;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+`
