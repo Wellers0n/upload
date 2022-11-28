@@ -48,7 +48,7 @@ At the root directory, run the following commands:
 docker-compose up --build -d
 ```
 
-Wait 15 sec to run the following commands:
+Wait 20 sec to run the following commands:
 
 ```sh
 DATABASE_URL=postgres://postgres:postgres@localhost:5431/uploaddb yarn migrate:server up
