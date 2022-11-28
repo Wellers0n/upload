@@ -56,7 +56,7 @@ DATABASE_URL=postgres://postgres:postgres@localhost:5431/uploaddb yarn migrate:s
 
 ## Start project
 
-- Enter in the root dir `yarn dev`
+Enter in the root dir `yarn dev`
 
 ## kill docker-compose
 
