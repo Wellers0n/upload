@@ -32,59 +32,54 @@ type Props = {
 const TransactionTable = ({ loadMore, rows }: Props) => {
 
   return (
-    <Container>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell>Type</TableCell>
-              <TableCell align="left">Date</TableCell>
-              <TableCell align="left">Product</TableCell>
-              <TableCell align="left">Amount</TableCell>
-              <TableCell align="left">Seller</TableCell>
-              <TableCell align="left">Description</TableCell>
-              <TableCell align="left">Nature</TableCell>
-              <TableCell align="left">Signal</TableCell>
+    <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Type</TableCell>
+            <TableCell align="left">Date</TableCell>
+            <TableCell align="left">Product</TableCell>
+            <TableCell align="left">Amount</TableCell>
+            <TableCell align="left">Seller</TableCell>
+            <TableCell align="left">Description</TableCell>
+            <TableCell align="left">Nature</TableCell>
+            <TableCell align="left">Signal</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row, index) => (
+            <TableRow
+              key={index}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              <TableCell component="th" scope="row">
+                {row.type}
+              </TableCell>
+              <TableCell component="th" scope="row">
+                {row.date}
+              </TableCell>
+              <TableCell align="left">{row.product}</TableCell>
+              <TableCell align="left">{row.amount}</TableCell>
+              <TableCell align="left">{row.seller}</TableCell>
+              <TableCell align="left">{row.description}</TableCell>
+              <TableCell align="left">{row.nature}</TableCell>
+              <TableCell align="left">{row.signal}</TableCell>
             </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row, index) => (
-              <TableRow
-                key={index}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  {row.type}
-                </TableCell>
-                <TableCell component="th" scope="row">
-                  {row.date}
-                </TableCell>
-                <TableCell align="left">{row.product}</TableCell>
-                <TableCell align="left">{row.amount}</TableCell>
-                <TableCell align="left">{row.seller}</TableCell>
-                <TableCell align="left">{row.description}</TableCell>
-                <TableCell align="left">{row.nature}</TableCell>
-                <TableCell align="left">{row.signal}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-        {!rows.length &&
-          <Stack alignItems={"center"} padding={5}>
-            <div>No transaction data</div>
-          </Stack>
-        }
-        <Button onClick={loadMore} >Load more</Button>
-      </TableContainer>
-    </Container>
+          ))}
+        </TableBody>
+      </Table>
+      {!rows.length &&
+        <Stack alignItems={"center"} padding={5}>
+          <div>No transaction data</div>
+        </Stack>
+      }
+      <Button onClick={loadMore} >Load more</Button>
+    </TableContainer>
   )
 };
 
 export default TransactionTable
 
-export const Container = styled.div`
-  width: 100%;
-`;
 
 export const Button = styled.button`
   background-color: #D7FF61;
