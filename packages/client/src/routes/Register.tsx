@@ -117,7 +117,7 @@ export const Title = styled.h2`
 `;
 
 export const Box = styled.div`
-  width: 50%;
+  width: 30%;
   height: 100%;
   margin-top: 20px;
   display: flex;
