@@ -10,7 +10,7 @@ const Button = (props: ButtonProps) => {
 
 export default Button
 
-export const Container = styled(ButtonMui)`
+const Container = styled(ButtonMui)`
   height: 50px;
   border: none;
   margin-top: 60px;

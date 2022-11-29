@@ -25,7 +25,7 @@ const Header = () => {
 
 export default Header
 
-export const Container = styled.header`
+const Container = styled.header`
   height: 100px;
   width: 100%;
   background-color: #D7FF61;
@@ -34,12 +34,12 @@ export const Container = styled.header`
   justify-content: space-between;
 `;
 
-export const Items = styled.ul`
+const Items = styled.ul`
   display: flex;
   list-style: none;
 `
 
-export const Item = styled.ul`
+const Item = styled.ul`
   margin-left: 20px;
   margin-right: 20px;
   font-weight: bold;
