@@ -2,9 +2,8 @@ import React, { useState } from "react"
 import FormData from 'form-data'
 import styled from "styled-components";
 
-
 // components
-import ButtonMui from '@mui/material/Button';
+import Button from "../components/Button";
 import Alert from "../components/Alert";
 import Header from "../components/Header";
 import Snackbar from '@mui/material/Snackbar';
@@ -75,8 +74,8 @@ const Home = () => {
           <Stack marginBottom={5}>
             File: {file?.name || "no content"}
           </Stack>
-          <Stack spacing={1} direction={'row'}>
-            <ButtonMui variant="contained" component="label" style={{ backgroundColor: "#D7FF61", color: "#363636" }}>
+          <Stack direction={'row'}>
+            <Button variant="contained" component="label">
               Upload
               <input
                 onChange={(e: any) => setFile(e.target.files[0])}
@@ -84,17 +83,16 @@ const Home = () => {
                 hidden
                 accept="text/*"
                 type="file" />
-            </ButtonMui>
-            <ButtonMui variant="contained" component="label" style={{ backgroundColor: "#D7FF61", color: "#363636" }}>
+            </Button>
+            <Button variant="contained" component="label">
               <a
                 href={"./sales.txt"}
                 download>
                 Download test file
               </a>
-            </ButtonMui>
+            </Button>
           </Stack>
           <Button onClick={submit} >Submit</Button>
-
         </Box>
       </Wrapper>
     </Container>
@@ -131,18 +129,6 @@ export const Box = styled.div`
   flex-direction: column;
 `;
 
-export const Button = styled.button`
-  background-color: #D7FF61;
-  height: 50px;
-  border: none;
-  width: 200px;
-  margin-top: 60px;
-  border-radius: 5px;
-  font-weight: bold;
-  font-size: 16px;
-  cursor: pointer;
-
-`
 export const Login = styled.button`
   color: #363636;
   background-color: transparent;
