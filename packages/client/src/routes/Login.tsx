@@ -8,6 +8,7 @@ import axios from '../axios'
 import Input from "../components/Input";
 import Alert from "../components/Alert";
 import Snackbar from '@mui/material/Snackbar';
+import Button from "../components/Button";
 
 const Login: React.FC = (props) => {
   const [email, setEmail] = useState("");
@@ -113,15 +114,3 @@ export const Register = styled.button`
   font-weight: bold;
   cursor: pointer;
 `;
-
-export const Button = styled.button`
-  background-color: #D7FF61;
-  height: 50px;
-  border: none;
-  width: 100%;
-  margin-top: 60px;
-  border-radius: 5px;
-  font-weight: bold;
-  font-size: 16px;
-  cursor: pointer;
-`

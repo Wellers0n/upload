@@ -9,6 +9,7 @@ import Alert from "../components/Alert";
 import Snackbar from '@mui/material/Snackbar';
 
 import axios from '../axios'
+import Button from "../components/Button";
 
 const Register = () => {
 
@@ -125,17 +126,6 @@ export const Box = styled.div`
   flex-direction: column;
 `;
 
-export const Button = styled.button`
-  background-color: #D7FF61;
-  height: 50px;
-  border: none;
-  width: 100%;
-  margin-top: 60px;
-  border-radius: 5px;
-  font-weight: bold;
-  font-size: 16px;
-  cursor: pointer;
-`
 export const Login = styled.button`
   color: #363636;
   background-color: transparent;

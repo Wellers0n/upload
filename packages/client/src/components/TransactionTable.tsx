@@ -11,6 +11,7 @@ import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 
 import { Stack } from "@mui/material";
+import Button from "./Button";
 
 export type RowsType = {
   type: number
@@ -73,21 +74,11 @@ const TransactionTable = ({ loadMore, rows }: Props) => {
           <div>No transaction data</div>
         </Stack>
       }
-      <Button onClick={loadMore} >Load more</Button>
+      <Stack alignItems={"center"} padding={5}>
+        <Button onClick={loadMore}>Load more</Button>
+      </Stack>
     </TableContainer>
   )
 };
 
 export default TransactionTable
-
-
-export const Button = styled.button`
-  background-color: #D7FF61;
-  height: 50px;
-  border: none;
-  width: 100%;
-  border-radius: 5px;
-  font-weight: bold;
-  font-size: 16px;
-  cursor: pointer;
-`
