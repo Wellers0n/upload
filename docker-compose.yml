@@ -10,6 +10,10 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=uploaddb
+    logging:
+        options:
+          max-size: 10m
+          max-file: "3"
     volumes:
       - './packages/database/volume/bk:/bk'
       - './packages/database/volume/data:/var/lib/postgresql/data'
@@ -35,8 +39,6 @@ services:
     volumes:
       - ./:/usr/src/server/
       - /usr/src/server/node_modules
-    networks:
-      - network-upload
     ports:
       - '3001:3001'
     depends_on:
