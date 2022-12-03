@@ -75,4 +75,4 @@ differencify_reports
 .yarn
 .yarnrc
 
-packages/database/volume
+packages/database
