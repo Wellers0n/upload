@@ -18,6 +18,32 @@ services:
       - './packages/database/volume/data:/var/lib/postgresql/data'
     networks:
       - network-upload
+  app:
+    build:
+      context: packages/client
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/usr/src/app/
+      - /usr/src/app/node_modules
+    ports:
+      - '5173:5173'
+    depends_on:
+      - server
+    links:
+      - server
+  server:
+    build:
+      context: packages/server
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/usr/src/server/
+      - /usr/src/server/node_modules
+    ports:
+      - '3001:3001'
+    depends_on:
+      - database
+    links:
+      - database
 networks:
   network-upload:
     driver: bridge
