@@ -51,7 +51,7 @@ docker-compose up --build -d
 Wait 20 sec to run the following commands:
 
 ```sh
-DATABASE_URL=postgres://postgres:postgres@localhost:5431/uploaddb yarn migrate:server up
+yarn migrate:server up
 ```
 
 ## Start project
