@@ -18,4 +18,4 @@ RUN yarn
 # Bundle app source
 COPY . .
 
-CMD [ "yarn", "dev:client" ]
+CMD [ "yarn", "dev" ]
