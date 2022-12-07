@@ -1,7 +1,9 @@
 version: '3.7'
 services:
-  database:
+  postgres-db:
+    container_name: upload-postgres
     image: postgres:alpine
+    hostname: postgres-db
     restart: always
     ports:
       - 5432:5432
@@ -14,10 +16,31 @@ services:
           max-size: 10m
           max-file: "3"
     volumes:
-      - './database/volume/bk:/bk'
-      - './database/volume/data:/var/lib/postgresql/data'
+      - './postgres-data/volume/bk:/bk'
+      - './postgres-data/volume/data:/var/lib/postgresql/data'
     networks:
       - network-upload
+  app:
+    container_name: upload-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/usr/src/app/
+      - /usr/src/app/node_modules
+    environment:
+      - POSTGRES_HOST=postgres:postgres@postgres-db:5432
+    ports:
+      - '3001:3001'
+      - '5173:5173'
+    depends_on:
+      - postgres-db
+    links:
+      - postgres-db
+    networks:
+      - network-upload
+volumes:
+  postgres-data:
 networks:
   network-upload:
     driver: bridge
