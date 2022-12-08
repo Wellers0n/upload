@@ -2,8 +2,10 @@ FROM node:18
 
 EXPOSE 3001
 
+EXPOSE 5432
+
 # Create app directory
-WORKDIR /usr/src/server
+WORKDIR /usr/src/app
 
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
@@ -17,5 +19,7 @@ RUN yarn
 
 # Bundle app source
 COPY . .
+
+RUN chown -R node:node .
 
 CMD [ "yarn", "dev" ]

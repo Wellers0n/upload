@@ -76,3 +76,4 @@ differencify_reports
 .yarnrc
 
 database
+postgres-data
