@@ -33,11 +33,6 @@ Use node `v18.12.1`
 - Enter in the folder `cd 4fun-upload/`
 - To install project dependency: `yarn`
 
-
-## API Docs
-
-Visit [http://localhost:3001/docs/](http://localhost:3001/docs/) for more information about the documentation
-
 ## Init database
 
 ### init docker-componse (postgres)
@@ -47,7 +42,6 @@ At the root directory, run the following commands:
 ```sh
 docker-compose up --build -d
 ```
-
 
 ## Run migrations
 
@@ -62,6 +56,11 @@ yarn migrate:server up
 frontend port: `http://localhost:5173`
 
 backend port: `http://localhost:3001`
+
+
+## API Docs
+
+Visit [http://localhost:3001/docs/](http://localhost:3001/docs/) for more information about the documentation
 
 ## kill docker-compose
 
