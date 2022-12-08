@@ -51,7 +51,7 @@ docker-compose up --build -d
 
 ## Run migrations
 
-<b>OBS<b/>: Wait docker-compose to run the following commands
+<b>NOTE: Wait for docker-compose, to execute the following commands</b>
 
 ```sh
 yarn migrate:server up
