@@ -21,6 +21,6 @@ RUN yarn
 # Bundle app source
 COPY . .
 
-RUN chmod 777 /usr/src/app
+RUN chown -R node:node .
 
 CMD [ "yarn", "dev" ]
