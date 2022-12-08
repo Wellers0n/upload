@@ -54,9 +54,7 @@ Wait 20 sec to run the following commands:
 yarn migrate:server up
 ```
 
-## Start project
-
-Enter in the root dir `yarn dev`
+## Listening in
 
 frontend port: `http://localhost:5173`
 
