@@ -48,7 +48,10 @@ At the root directory, run the following commands:
 docker-compose up --build -d
 ```
 
-Wait 20 sec to run the following commands:
+
+## Run migrations
+
+<b>OBS<b/>: Wait docker-compose to run the following commands
 
 ```sh
 yarn migrate:server up
