@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=staging tsnd src/app.ts",
+    "dev": "NODE_ENV=staging ts-node-dev src/app.ts",
     "clear": "rimraf ./dist",
     "build": "esbuild src/app.ts --bundle --platform=node --target=node18.12.1 --outfile=dist/index.js",
     "build:webpack": "NODE_ENV=production npm run clear && webpack --env production",
