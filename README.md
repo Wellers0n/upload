@@ -39,15 +39,15 @@ Use node `v18.12.1`
 
 At the root directory, run the following commands:
 
-```sh
+```diff
 docker-compose up --build -d
 ```
 
 ## Run migrations
 
-<b>NOTE: Wait for docker-compose, to execute the following commands</b>
+```diff
+- NOTE: Wait for docker-compose, to execute the following commands
 
-```sh
 yarn migrate:server up
 ```
 
