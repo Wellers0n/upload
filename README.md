@@ -40,7 +40,7 @@ Use node `v18.12.1`
 At the root directory, run the following commands:
 
 ```diff
-docker-compose up --build -d
++ docker-compose up --build -d
 ```
 
 ## Run migrations
@@ -48,7 +48,7 @@ docker-compose up --build -d
 ```diff
 - NOTE: Wait for docker-compose, to execute the following commands
 
-yarn migrate:server up
++ yarn migrate:server up
 ```
 
 ## Listening in
@@ -64,8 +64,8 @@ Visit [http://localhost:3001/docs/](http://localhost:3001/docs/) for more inform
 
 ## kill docker-compose
 
-```sh
-docker-compose down -v
+```diff
+! docker-compose down -v
 ```
 
 ## Stack used
