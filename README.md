@@ -49,7 +49,7 @@ At the root directory, run the following command:
  docker-compose up --build -d
 ```
 
-## Run migrations
+## Avoid conflict
 
 - WARNIGN: stop your machine's postgres to avoid conflict:
 
@@ -70,6 +70,8 @@ sudo service postgresql stop
 ```sh
 pg_ctl -D "C:\Program Files\PostgreSQL\<Version>\data" stop
 ```
+
+## Run migrations
 
 - NOTE: Wait for docker-compose, to execute the following commands
 
