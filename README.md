@@ -15,18 +15,19 @@
     
 <br/>
 
-## Fullstack typescript/javascript  
-  
-  4fun-upload uses a stack full `JS/TS` on the frontend and backend, I'm making this project to improve
-  my skills!
-  
-  ##### [Frontend](https://github.com/Wellers0n/4fun-upload/tree/master/packages/client)
-  ##### [Backend](https://github.com/Wellers0n/4fun-upload/tree/master/packages/server)
+## Fullstack typescript/javascript
 
+4fun-upload uses a stack full `JS/TS` on the frontend and backend, I'm making this project to improve
+my skills!
+
+##### [Frontend](https://github.com/Wellers0n/4fun-upload/tree/master/packages/client)
+
+##### [Backend](https://github.com/Wellers0n/4fun-upload/tree/master/packages/server)
 
 ## Node version
 
 Use node `v18.12.1`
+
 ## Initing in the your PC
 
 - For clone the project `git clone https://github.com/Wellers0n/4fun-upload.git`
@@ -50,6 +51,26 @@ At the root directory, run the following command:
 
 ## Run migrations
 
+- WARNIGN: stop your machine's postgres to avoid conflict:
+
+#### Mac
+
+```sh
+brew services stop postgresql
+```
+
+#### Linux
+
+```sh
+sudo service postgresql stop
+```
+
+#### Windows
+
+```sh
+pg_ctl -D "C:\Program Files\PostgreSQL\<Version>\data" stop
+```
+
 - NOTE: Wait for docker-compose, to execute the following commands
 
 ```sh
@@ -61,7 +82,6 @@ yarn migrate:server up
 frontend port: `http://localhost:5173`
 
 backend port: `http://localhost:3001`
-
 
 ## API Docs
 
