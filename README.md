@@ -38,11 +38,11 @@ Use node `v18.12.1`
 yarn
 ```
 
-## Init database
+## Init application
 
-### init docker-componse (postgres)
+Init frontend, backend and postgres with docker-compose
 
-At the root directory, run the following commands:
+At the root directory, run the following command:
 
 ```sh
  docker-compose up --build -d
