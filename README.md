@@ -31,7 +31,12 @@ Use node `v18.12.1`
 
 - For clone the project `git clone https://github.com/Wellers0n/4fun-upload.git`
 - Enter in the folder `cd 4fun-upload/`
-- To install project dependency: `yarn`
+
+## Install dependencies
+
+```sh
+yarn
+```
 
 ## Init database
 
@@ -39,16 +44,16 @@ Use node `v18.12.1`
 
 At the root directory, run the following commands:
 
-```diff
-+ docker-compose up --build -d
+```sh
+ docker-compose up --build -d
 ```
 
 ## Run migrations
 
-```diff
 - NOTE: Wait for docker-compose, to execute the following commands
 
-+ yarn migrate:server up
+```sh
+yarn migrate:server up
 ```
 
 ## Listening in
@@ -64,8 +69,8 @@ Visit [http://localhost:3001/docs/](http://localhost:3001/docs/) for more inform
 
 ## kill docker-compose
 
-```diff
-! docker-compose down -v
+```sh
+docker-compose down -v
 ```
 
 ## Stack used
