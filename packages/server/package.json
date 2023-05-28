@@ -8,7 +8,7 @@
     "clear": "rimraf ./dist",
     "build": "esbuild src/app.ts --bundle --platform=node --target=node18.12.1 --outfile=dist/index.js",
     "build:webpack": "NODE_ENV=production npm run clear && webpack --env production",
-    "migrate": "DATABASE_URL=postgres://postgres:postgres@localhost:5432/uploaddb node-pg-migrate"
+    "migrate": "DATABASE_URL=postgres://postgres:postgres@localhost:5432/postgres node-pg-migrate"
   },
   "author": "Wellerson",
   "license": "ISC",

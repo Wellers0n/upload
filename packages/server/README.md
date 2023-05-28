@@ -25,8 +25,8 @@ Visit [http://localhost:3001/docs/](http://localhost:3001/docs/) for more inform
 ```sh
 USER=postgres
 PASSWORD=postgres
-DB=uploaddb
-URL=postgres://postgres:postgres@localhost:5432/uploaddb
+DB=postgres
+URL=postgres://postgres:postgres@localhost:5432/postgres
 ```
 
 <p align="center">

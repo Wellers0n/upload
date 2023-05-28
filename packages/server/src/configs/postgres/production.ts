@@ -1,7 +1,7 @@
 import { IKeysProps } from './'
 
 export const production = {
-  DATABASE_RDS_URL: 'postgresql://postgres:postgres@localhost:5432/uploaddb',
+  DATABASE_RDS_URL: 'postgresql://postgres:postgres@localhost:5432/postgres',
   options: {
     dialect: 'postgres',
     pool: {
