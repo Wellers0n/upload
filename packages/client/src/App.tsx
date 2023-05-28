@@ -14,7 +14,10 @@ function App() {
   return (
     <Suspense fallback={"Loading..."}>
       <ThemeProvider theme={theme}>
-        <SnackbarProvider maxSnack={3}>
+        <SnackbarProvider
+          maxSnack={3}
+          anchorOrigin={{ horizontal: "right", vertical: "top" }}
+        >
           <QueryClientProvider client={queryClient}>
             <Router />
             {DEVELOPMENT_ENV && <ReactQueryDevtools initialIsOpen={false} />}
