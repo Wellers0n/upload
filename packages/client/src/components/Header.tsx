@@ -28,7 +28,7 @@ export default Header
 const Container = styled.header`
   height: 100px;
   width: 100%;
-  background-color: #D7FF61;
+  background-color: #3b4d00;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -37,6 +37,7 @@ const Container = styled.header`
 const Items = styled.ul`
   display: flex;
   list-style: none;
+  color: #fff;
 `
 
 const Item = styled.ul`
