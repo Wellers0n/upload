@@ -1,80 +1,92 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { Button, Stack, TextField } from "@mui/material";
+import { useForm, Controller } from "react-hook-form";
+import { useLoginSessionMutation } from "../hooks";
 
-import axios from '../axios'
-
-// components
-import Input from "../components/Input";
-import Alert from "../components/Alert";
-import Snackbar from '@mui/material/Snackbar';
-import Button from "../components/Button";
+type Submit = {
+  email: string;
+  password: string;
+};
 
 const Login: React.FC = (props) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [open, setOpen] = useState(false);
-  const [snackbarMessage, setSnackbarMessage] = useState("");
-
+  const { mutateLoginSession } = useLoginSessionMutation();
   const navigate = useNavigate();
 
-  const submit = async () => {
-    try {
-      const response = await axios?.post('/session/login', {
-        email,
-        password
-      })
+  const { handleSubmit, control } = useForm({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
 
-      localStorage.setItem('token', response.data.token);
-
-      navigate('/')
-
-    } catch (error: any) {
-      setSnackbarMessage(error?.response?.data?.message)
-      handleClick()
-
-    }
-  };
-
-  const handleClick = () => {
-    setOpen(true);
-  };
-
-  const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setOpen(false);
+  const submit = async ({ email, password }: Submit) => {
+    mutateLoginSession({
+      email,
+      password,
+    });
   };
 
   return (
     <Container>
-      <Box>
-        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-          <Alert onClose={handleClose} severity={"error"} sx={{ width: '100%' }}>
-            {snackbarMessage}
-          </Alert>
-        </Snackbar>
+      <Box onSubmit={handleSubmit(submit)}>
         <Title>Log in</Title>
-        <Input
-          title={"Email"}
-          value={email}
-          onChange={(value: string) => setEmail(value)}
-          type={"text"}
-          placeholder={"joe@email.com"}
-        />
-        <Input
-          value={password}
-          onChange={(value: string) => setPassword(value)}
-          title={"Password"}
-          type={"password"}
-          placeholder={"Enter your password"}
-        />
-        <Register onClick={() => navigate("/register")}>
-          Register
-        </Register>
-        <Button onClick={submit}>Login</Button>
+        <Stack
+          width={"100%"}
+          spacing={2}
+          direction={{ xs: "column", sm: "column", md: "column" }}
+        >
+          <Controller
+            name={"email"}
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <TextField
+                onChange={onChange}
+                value={value}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                fullWidth
+                label={"Email"}
+              />
+            )}
+          />
+
+          <Controller
+            name={"password"}
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <TextField
+                onChange={onChange}
+                value={value}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                fullWidth
+                type="password"
+                label={"Senha"}
+              />
+            )}
+          />
+        </Stack>
+        <Stack
+          width={"100%"}
+          mt={2}
+          direction={"row"}
+          sx={{ justifyContent: "space-between", alignItems: "center" }}
+        >
+          <Button
+            sx={{ width: 160, height: 40 }}
+            variant="contained"
+            type="submit"
+          >
+            Entrar
+          </Button>
+          <Button variant="text" onClick={() => navigate("/register")}>
+            Register
+          </Button>
+        </Stack>
       </Box>
     </Container>
   );
@@ -92,11 +104,21 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h2`
-  color: black;
+  color: #3b4d00;
+  margin-bottom: 3rem;
 `;
 
-export const Box = styled.div`
-  width: 30%;
+export const Box = styled.form`
+  width: 25%;
+
+  @media (max-width: 1200px) {
+    width: 40%;
+  }
+
+  @media (max-width: 568px) {
+    width: 78%;
+  }
+
   height: 100%;
   margin-top: 20px;
   display: flex;
@@ -105,12 +127,12 @@ export const Box = styled.div`
   flex-direction: column;
 `;
 
-export const Register = styled.button`
-  color: #363636;
-  background-color: transparent;
-  border: none;
-  font-size: 14px;
-  align-self: flex-end;
-  font-weight: bold;
-  cursor: pointer;
-`;
+// export const Register = styled.button`
+//   color: #363636;
+//   background-color: transparent;
+//   border: none;
+//   font-size: 14px;
+//   align-self: center;
+//   font-weight: bold;
+//   cursor: pointer;
+// `;
