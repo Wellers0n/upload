@@ -1,123 +1,142 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { Button, Stack, TextField } from "@mui/material";
+import { useForm, Controller } from "react-hook-form";
 
+import { useRegisterSessionMutation } from "../hooks";
 
-// components
-import Input from "../components/Input";
-import Alert from "../components/Alert";
-import Snackbar from '@mui/material/Snackbar';
+type Submit = {
+  email: string;
+  password: string;
+  name: string;
+};
 
-import axios from '../axios'
-import Button from "../components/Button";
-
-const Register = () => {
-
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [snackbarMessage, setSnackbarMessage] = useState("");
-  const [open, setOpen] = useState(false);
-
+const Login: React.FC = (props) => {
   const navigate = useNavigate();
 
-  const submit = async () => {
-    try {
-      const response = await axios?.post('/session/register', {
-        name,
-        email,
-        password
-      })
+  const { mutateRegisterSession } = useRegisterSessionMutation();
 
-      localStorage.setItem('token', response.data.token);
+  const { handleSubmit, control } = useForm({
+    defaultValues: {
+      name: "",
+      email: "",
+      password: "",
+    },
+  });
 
-      navigate('/')
-
-    } catch (error: any) {
-      setSnackbarMessage(error?.response?.data?.message)
-      handleClick()
-
-    }
-  };
-
-
-  const handleClick = () => {
-    setOpen(true);
-  };
-
-  const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setOpen(false);
+  const submit = async ({ name, email, password }: Submit) => {
+    mutateRegisterSession({
+      name,
+      email,
+      password,
+    });
   };
 
   return (
     <Container>
-      <Wrapper>
-        <Box>
-          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-            <Alert onClose={handleClose} severity={"error"} sx={{ width: '100%' }}>
-              {snackbarMessage}
-            </Alert>
-          </Snackbar>
-          <Title>Register</Title>
-          <Input
-            value={name}
-            onChange={(value: string) => setName(value)}
-            title={"Name"}
-            type={"text"}
-            placeholder={"Enter your name"}
+      <Box onSubmit={handleSubmit(submit)}>
+        <Title>Log in</Title>
+        <Stack
+          width={"100%"}
+          spacing={2}
+          direction={{ xs: "column", sm: "column", md: "column" }}
+        >
+          <Controller
+            name={"name"}
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <TextField
+                onChange={onChange}
+                value={value}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                fullWidth
+                label={"Name"}
+              />
+            )}
           />
-          <Input
-            title={"Email"}
-            value={email}
-            onChange={(value: string) => setEmail(value)}
-            type={"text"}
-            placeholder={"joe@email.com"}
+          <Controller
+            name={"email"}
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <TextField
+                onChange={onChange}
+                value={value}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                fullWidth
+                label={"Email"}
+              />
+            )}
           />
-          <Input
-            value={password}
-            onChange={(value: string) => setPassword(value)}
-            title={"Password"}
-            type={"password"}
-            placeholder={"Enter your password"}
+
+          <Controller
+            name={"password"}
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <TextField
+                onChange={onChange}
+                value={value}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                fullWidth
+                type="password"
+                label={"Senha"}
+              />
+            )}
           />
-          <Login onClick={() => navigate("/login")}>
-            Login
-          </Login>
-          <Button onClick={submit}>Register</Button>
-        </Box>
-      </Wrapper>
+        </Stack>
+        <Stack
+          width={"100%"}
+          mt={2}
+          direction={"row"}
+          sx={{ justifyContent: "space-between", alignItems: "center" }}
+        >
+          <Button
+            sx={{ width: 160, height: 40 }}
+            variant="contained"
+            type="submit"
+          >
+            Cadastrar
+          </Button>
+          <Button variant="text" onClick={() => navigate("/login")}>Login</Button>
+        </Stack>
+      </Box>
     </Container>
   );
 };
 
-export default Register;
-
+export default Login;
 
 export const Container = styled.div`
   display: flex;
   height: 100vh;
   width: 100%;
-`;
-
-export const Wrapper = styled.div`
-  flex: 2;
-  background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
 `;
 
 export const Title = styled.h2`
-  color: black;
+  color: #3b4d00;
+  margin-bottom: 3rem;
 `;
 
-export const Box = styled.div`
-  width: 30%;
+export const Box = styled.form`
+  width: 25%;
+
+  @media (max-width: 1200px) {
+    width: 40%;
+  }
+
+  @media (max-width: 568px) {
+    width: 78%;
+  }
+
   height: 100%;
   margin-top: 20px;
   display: flex;
@@ -126,12 +145,12 @@ export const Box = styled.div`
   flex-direction: column;
 `;
 
-export const Login = styled.button`
+export const Register = styled.button`
   color: #363636;
   background-color: transparent;
   border: none;
   font-size: 14px;
-  align-self: flex-end;
+  align-self: center;
   font-weight: bold;
   cursor: pointer;
-`
+`;
