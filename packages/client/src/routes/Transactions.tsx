@@ -1,52 +1,53 @@
-import React, { useEffect, useState } from "react"
-import styled from "styled-components";
+import React, { useState } from "react";
 
 // components
 import Header from "../components/Header";
-import TransactionTable, { RowsType } from "../components/TransactionTable";
+import Card from "../components/Card";
+import TransactionTable from "../components/TransactionTable";
+import { Stack } from "@mui/material";
 
-
-import axios from '../axios'
-import auth from "../auth";
+import useTransactionsData from "../hooks/useTransactionsData";
 
 const Transactions = () => {
-  const [rows, setRows] = useState<RowsType[]>([])
-  const [offset, setOffset] = useState(1)
+  const [offset, setOffset] = useState(0);
 
-
-  const getData = async () => {
-    const { data } = await axios.get('/transaction/list', {
-      headers: {
-        Authorization: auth()
-      },
-      params: {
-        limit: 10,
-        offset
-      }
-    });
-
-    setRows(data.transactions);
-  };
-
-  const loadMore = () => {
-    setOffset(val => val + 1)
-  }
-
-
-  useEffect(() => {
-    getData();
-  }, [offset]);
+  const { data } = useTransactionsData({
+    params: {
+      offset,
+      limit: 10,
+    },
+  });
 
   return (
-    <Container>
+    <Stack>
       <Header />
-      <TransactionTable rows={rows} loadMore={loadMore} />
-    </Container>
-  )
+      <Stack
+        direction={"row"}
+        spacing={2}
+        mt={2}
+        justifyContent={"center"}
+        alignItems={"center"}
+      >
+        <Card
+          title="Saldo de entrada"
+          variant="green"
+          value={data?.totalPositiveAmount || "R$ 0"}
+        />
+        <Card
+          title="Saldo de saída"
+          variant="red"
+          value={data?.totalNegativeAmount || "R$ 0"}
+        />
+      </Stack>
+      <Stack justifyContent={"center"} alignItems={"center"}>
+        <TransactionTable
+          rows={data?.transactions || []}
+          setOffset={setOffset}
+          totalPages={data?.totalPages || 0}
+        />
+      </Stack>
+    </Stack>
+  );
 };
 
-export default Transactions
-
-export const Container = styled.div`
-  width: 100%;
-`;
+export default Transactions;

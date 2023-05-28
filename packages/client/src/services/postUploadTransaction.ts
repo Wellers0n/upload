@@ -1,4 +1,4 @@
-import api from "./api";
+import Api from "./api";
 
 type Data = {
   file: File;
@@ -15,6 +15,8 @@ type Response = {
 
 const postUploadTransaction = async (props: Props): Promise<Response> => {
   const { data } = props;
+
+  const api = Api();
 
   const response = await api.post<Response>("/upload/transaction-file", data, {
     headers: {

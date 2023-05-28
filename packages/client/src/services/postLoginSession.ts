@@ -1,4 +1,4 @@
-import api from "./api";
+import Api from "./api";
 
 type Data = {
   email: string;
@@ -15,6 +15,8 @@ type Response = {
 
 const postLoginSession = async (props: Props): Promise<Response> => {
   const { data } = props;
+
+  const api = Api()
 
   const response = await api.post<Response>("/session/login", data);
 
