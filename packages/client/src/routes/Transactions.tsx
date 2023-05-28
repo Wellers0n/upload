@@ -20,8 +20,8 @@ const Transactions = () => {
         Authorization: auth()
       },
       params: {
-        limit: offset * 10,
-
+        limit: 10,
+        offset
       }
     });
 
