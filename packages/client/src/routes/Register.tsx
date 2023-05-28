@@ -35,7 +35,7 @@ const Login: React.FC = (props) => {
 
   return (
     <Container>
-      <Box onSubmit={handleSubmit(submit)}>
+      <Form onSubmit={handleSubmit(submit)}>
         <Title>Log in</Title>
         <Stack
           width={"100%"}
@@ -105,7 +105,7 @@ const Login: React.FC = (props) => {
           </Button>
           <Button variant="text" onClick={() => navigate("/login")}>Login</Button>
         </Stack>
-      </Box>
+      </Form>
     </Container>
   );
 };
@@ -126,7 +126,7 @@ export const Title = styled.h2`
   margin-bottom: 3rem;
 `;
 
-export const Box = styled.form`
+export const Form = styled.form`
   width: 25%;
 
   @media (max-width: 1200px) {
