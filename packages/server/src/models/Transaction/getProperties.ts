@@ -34,6 +34,10 @@ const getProperties = (DataTypes): ModelAttributes => {
             allowNull: false,
             type: DataTypes.STRING
         },
+        user_id: {
+          allowNull: false,
+          type: DataTypes.INTEGER
+      },
     }
 }
 

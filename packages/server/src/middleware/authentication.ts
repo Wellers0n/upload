@@ -8,7 +8,7 @@ export const authentication = async (request: Request, response: Response, next:
         jwt.verify(authorization, 'batman', (err, decoded) => {
             if (err) {
                 return response.status(401).json({
-                    message: 'Token not found, Not authorized!',
+                    message: 'Token não encontrado!',
                     error: true,
                 });
             }
@@ -18,7 +18,7 @@ export const authentication = async (request: Request, response: Response, next:
         })
     } else {
         return response.status(401).json({
-            message: 'Not authorized!',
+            message: 'Não autorizado!',
             error: true,
         });
     }

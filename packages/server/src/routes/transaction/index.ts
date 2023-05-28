@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import TransactionController from '../../controllers/TransactionController'
+import ListTransactionsController from '../../controllers/TransactionController/ListTransactions'
 import { authentication } from '../../middleware/authentication'
 
 const transactionRoutes = Router()
@@ -8,7 +8,7 @@ const transactionRoutes = Router()
  * @swagger
  * /transaction/list:
  *   get:
- *     security: 
+ *     security:
  *       - token: []
  *     description: list of transactions
  *     tags: ["Transaction"]
@@ -78,6 +78,6 @@ const transactionRoutes = Router()
  *                message: Not authorized!
  *                error: true
  */
-transactionRoutes.get('/list', authentication, TransactionController.List)
+transactionRoutes.get('/list', authentication, ListTransactionsController)
 
 export { transactionRoutes }

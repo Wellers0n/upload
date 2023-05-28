@@ -1,5 +1,6 @@
 import { Router } from 'express'
-import SessionController from '../../controllers/SessionController'
+import LoginController from '../../controllers/SessionController/Login'
+import RegisterController from '../../controllers/SessionController/Register'
 
 const sessionRoutes = Router()
 
@@ -19,13 +20,10 @@ const sessionRoutes = Router()
  *              properties:
  *                message:
  *                  type: string
- *                error:
- *                  type: boolean
  *                token: 
  *                  type: ["string", "null"]
  *              example:
- *                message: Successful login
- *                error: false
+ *                message: Login com sucesso!
  *                token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjkyMjkwMjh9.kWzb6evDjKORu9097C5PFrSsfFpL0sxgqlyv-tLDWFc
  *       400:
  *         description: Error
@@ -36,22 +34,18 @@ const sessionRoutes = Router()
  *              properties:
  *                message:
  *                  type: string
- *                error:
- *                  type: boolean
  *                token: 
  *                  type: ["string", "null"]
  *            examples:
  *                required:
  *                  summary: fields required
  *                  value:
- *                    message: Email and password is required
- *                    error: true
+ *                    message: Email e senha são obrigatórios
  *                    token: null
  *                user:
  *                  summary: verify credentials
  *                  value:
- *                    message: Invalid credentials
- *                    error: true
+ *                    message: Credenciais inválidas
  *                    token: null
  *     consumers:
  *        - application/json
@@ -70,7 +64,7 @@ const sessionRoutes = Router()
  *                password:
  *                  type: string
  */
-sessionRoutes.post('/login', SessionController.Login)
+sessionRoutes.post('/login', LoginController)
 
 /**
  * @swagger
@@ -88,13 +82,10 @@ sessionRoutes.post('/login', SessionController.Login)
  *              properties:
  *                message:
  *                  type: string
- *                error:
- *                  type: boolean
  *                token: 
  *                  type: ["string", "null"]
  *              example:
- *                message: User created successfully
- *                error: false
+ *                message: Usuário criado com sucesso!
  *                token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjkyMjkwMjh9.kWzb6evDjKORu9097C5PFrSsfFpL0sxgqlyv-tLDWFc
  *       400:
  *         description: Error
@@ -105,22 +96,18 @@ sessionRoutes.post('/login', SessionController.Login)
  *              properties:
  *                message:
  *                  type: string
- *                error:
- *                  type: boolean
  *                token: 
  *                  type: ["string", "null"]
  *            examples:
  *                required:
  *                  summary: fields required
  *                  value:
- *                    message: Name, email and password is required
- *                    error: true
+ *                    message: Nome, email e senha são obrigatórios
  *                    token: null
  *                user:
  *                  summary: user already exists
  *                  value:
- *                    message: user already exists
- *                    error: true
+ *                    message: Usuário já existe
  *                    token: null
  *     consumers:
  *       - application/json
@@ -142,6 +129,6 @@ sessionRoutes.post('/login', SessionController.Login)
  *                password:
  *                  type: string
  */
-sessionRoutes.post('/register', SessionController.Register)
+sessionRoutes.post('/register', RegisterController)
 
 export { sessionRoutes }

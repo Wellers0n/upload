@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import UploadController from '../../controllers/UploadController'
+import TransactionFile from '../../controllers/UploadController/TransactionFile'
 import { storage } from "../../middleware/upload";
 import multer from "multer";
 import { authentication } from '../../middleware/authentication'
@@ -31,7 +31,7 @@ const uploadRoutes = Router()
  *                error:
  *                  type: boolean
  *              example:
- *                message: Successful upload
+ *                message: Arquivo enviado com sucesso!
  *                error: false
  *       404:
  *         description: Error
@@ -45,8 +45,7 @@ const uploadRoutes = Router()
  *                error:
  *                  type: boolean
  *              example:
- *                message: File not found
- *                error: true
+ *                message: Arquivo não encontrado
  *       400:
  *         description: Error
  *         content:
@@ -59,8 +58,7 @@ const uploadRoutes = Router()
  *                error:
  *                  type: boolean
  *              example:
- *                message: File type invalid, send a .text!
- *                error: true
+ *                message: Tipo de arquivo inválido, envie um .txt!
  *       401:
  *         description: Error
  *         content:
@@ -70,11 +68,8 @@ const uploadRoutes = Router()
  *              properties:
  *                message:
  *                  type: string
- *                error:
- *                  type: boolean
  *              example:
- *                message: Not authorized!
- *                error: true
+ *                message: Não autorizado!
  *     requestBody:
  *       required: true
  *       content:
@@ -89,6 +84,6 @@ const uploadRoutes = Router()
  *                  format: binary
  * 
  */
-uploadRoutes.post('/transaction-file', upload.single('file'), authentication, UploadController.TransactionFile)
+uploadRoutes.post('/transaction-file', upload.single('file'), authentication, TransactionFile)
 
 export { uploadRoutes }

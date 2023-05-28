@@ -7,6 +7,7 @@ exports.up = pgm => {
       create table if not exists "Transactions"
       (
         id serial not null constraint transaction_pk primary key,
+        user_id  integer not null,
         type int not null,
         date timestamp with time zone not null,
         product text not null,
