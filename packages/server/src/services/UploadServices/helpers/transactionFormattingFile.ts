@@ -1,12 +1,14 @@
 import getTransactionType from './getTransactionType'
 
-const transactionFormatting = (transaction: string[], user: { id: number }) => {
-  return transaction.map((transaction: string) => {
+const transactionFormattingFile = (transactionFile: string[], user: { id: number }) => {
+
+  return transactionFile.map((transaction: string) => {
     const type = Number(transaction.slice(0, 1))
     const date = transaction.slice(1, 26)
     const product = transaction.slice(26, 56).trim()
     const amount = Number(transaction.slice(57, 66))
     const seller = transaction.slice(66).trim()
+    const transactionType = getTransactionType(type)
 
     if (transaction) {
       return {
@@ -16,10 +18,10 @@ const transactionFormatting = (transaction: string[], user: { id: number }) => {
         product,
         amount,
         seller,
-        ...getTransactionType(type)
+        ...transactionType
       }
     }
   })
 }
 
-export default transactionFormatting
+export default transactionFormattingFile
