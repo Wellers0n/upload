@@ -5,25 +5,24 @@ import * as pg from 'pg'
 
 const basename = path.basename(__filename)
 const db: any = {}
-
-const sequelize = new Sequelize(
-  {
-    host:"postgres-db",
-    username: 'postgres',
-    password: 'postgres',
-    database: 'postgres',
-    port: 5432,
-    dialectModule: pg,
-    dialect: 'postgres',
-    pool: {
-      max: 100,
-      min: 0,
-      acquire: 10000,
-      idle: 20000
-    },
-    logging: false
-  }
-)
+const host = process.env.POSTGRES_HOST || 'localhost'
+console.log({ host })
+const sequelize = new Sequelize({
+  host,
+  username: 'postgres',
+  password: 'postgres',
+  database: 'postgres',
+  port: 5432,
+  dialectModule: pg,
+  dialect: 'postgres',
+  pool: {
+    max: 100,
+    min: 0,
+    acquire: 10000,
+    idle: 20000
+  },
+  logging: false
+})
 
 fs.readdirSync(__dirname)
   .filter(folderFile => {
