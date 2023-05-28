@@ -82,13 +82,10 @@ sessionRoutes.post('/login', LoginController)
  *              properties:
  *                message:
  *                  type: string
- *                error:
- *                  type: boolean
  *                token: 
  *                  type: ["string", "null"]
  *              example:
- *                message: User created successfully
- *                error: false
+ *                message: Usuário criado com sucesso!
  *                token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjkyMjkwMjh9.kWzb6evDjKORu9097C5PFrSsfFpL0sxgqlyv-tLDWFc
  *       400:
  *         description: Error
@@ -99,22 +96,18 @@ sessionRoutes.post('/login', LoginController)
  *              properties:
  *                message:
  *                  type: string
- *                error:
- *                  type: boolean
  *                token: 
  *                  type: ["string", "null"]
  *            examples:
  *                required:
  *                  summary: fields required
  *                  value:
- *                    message: Name, email and password is required
- *                    error: true
+ *                    message: Nome, email e senha são obrigatórios
  *                    token: null
  *                user:
  *                  summary: user already exists
  *                  value:
- *                    message: user already exists
- *                    error: true
+ *                    message: Usuário já existe
  *                    token: null
  *     consumers:
  *       - application/json

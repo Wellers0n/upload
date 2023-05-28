@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
-import TransactionServices from '../../../services/TransactionServices'
-import { getUser } from '../../../services/SessionServices/Auth'
+import TransactionServices from '../../services/TransactionServices'
+import { getUser } from '../../services/SessionServices/Auth'
 
 const List = async (request: Request, response: Response) => {
   const user = await getUser(request?.headers?.authorization)
