@@ -1,105 +1,83 @@
-import React, { useState } from "react"
-import FormData from 'form-data'
+import React, { useState } from "react";
+
 import styled from "styled-components";
+import { Button, Stack, Typography, TextField } from "@mui/material";
+import { useForm, Controller } from "react-hook-form";
 
-// components
-import Button from "../components/Button";
-import Alert from "../components/Alert";
 import Header from "../components/Header";
-import Snackbar from '@mui/material/Snackbar';
-import Stack from '@mui/material/Stack';
-
-import axios from '../axios'
-import auth from "../auth";
+import useUploadTransactionMutation from "../hooks/useUploadTransactionMutation";
 
 const Home = () => {
-  const [file, setFile] = useState<{ name: string }>({ name: "" });
-  const [snackbarMessage, setSnackbarMessage] = useState("");
-  const [open, setOpen] = useState(false);
-  const [error, setError] = useState(false);
+  const [file, setFile] = useState<File | null>();
+  const { mutateUploadTransaction } = useUploadTransactionMutation();
+
+  const { handleSubmit, control, reset } = useForm({
+    defaultValues: {
+      file: "",
+    },
+  });
 
   const submit = async () => {
-    try {
+    if (!file) return;
 
-      const form = new FormData();
+    mutateUploadTransaction({
+      file,
+    });
 
-      form.append('file', file)
-
-      const response = await axios?.post('/upload/transaction-file', form, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          Authorization: auth()
-
-        }
-      })
-      setError(false)
-
-      setSnackbarMessage(response?.data?.message)
-
-      handleClick()
-
-      setFile({ name: "" })
-
-    } catch (error: any) {
-      setSnackbarMessage(error?.response?.data?.message)
-      setError(true)
-      handleClick()
-
-    }
+    setFile(null);
+    reset();
   };
-
-  const handleClick = () => {
-    setOpen(true);
-  };
-
-  const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setOpen(false);
-  };
-
 
   return (
     <Container>
       <Header />
       <Wrapper>
-        <Box>
-          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-            <Alert onClose={handleClose} severity={error ? "error" : "success"} sx={{ width: '100%' }}>
-              {snackbarMessage}
-            </Alert>
-          </Snackbar>
-          <Stack marginBottom={5}>
-            File: {file?.name || "no content"}
-          </Stack>
-          <Stack direction={'row'}>
-            <Button variant="contained" component="label">
-              Upload
-              <input
-                onChange={(e: any) => setFile(e.target.files[0])}
-                title="file"
-                hidden
-                accept="text/*"
-                type="file" />
-            </Button>
-            <Button variant="contained" component="label">
-              <a
-                href={"./sales.txt"}
-                download>
-                Download test file
+        <Form onSubmit={handleSubmit(submit)}>
+          <Typography mb={5} align="center">
+            Caso não tenha o arquivo .txt faça o download do arquivo teste
+          </Typography>
+          <Stack spacing={3} direction={{ md: "row", sm: "column" }} mb={7}>
+            <Controller
+              name={"file"}
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <TextField
+                  onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                    onChange(event);
+
+                    if (!event.target.files) return;
+                    setFile(event?.target?.files[0]);
+                  }}
+                  value={value}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  fullWidth
+                  type="file"
+                  label={"Arquivo"}
+                />
+              )}
+            />
+            <Button variant="text">
+              <a href={"./sales.txt"} download>
+                Download arquivo teste
               </a>
             </Button>
           </Stack>
-          <Button onClick={submit} >Submit</Button>
-        </Box>
+          <Button
+            sx={{ width: 170, height: 45 }}
+            variant="contained"
+            type="submit"
+          >
+            Enviar
+          </Button>
+        </Form>
       </Wrapper>
     </Container>
-  )
+  );
 };
 
-export default Home
+export default Home;
 
 export const Container = styled.div`
   width: 100%;
@@ -108,7 +86,6 @@ export const Container = styled.div`
 export const Wrapper = styled.div`
   flex: 2;
   height: 70vh;
-  background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -119,7 +96,7 @@ export const Title = styled.h2`
   color: black;
 `;
 
-export const Box = styled.div`
+export const Form = styled.form`
   width: 50%;
   height: 100%;
   margin-top: 20px;
