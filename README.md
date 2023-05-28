@@ -20,10 +20,6 @@
 4fun-upload uses a stack full `JS/TS` on the frontend and backend, I'm making this project to improve
 my skills!
 
-##### [Frontend](https://github.com/Wellers0n/4fun-upload/tree/master/packages/client)
-
-##### [Backend](https://github.com/Wellers0n/4fun-upload/tree/master/packages/server)
-
 ## Node version
 
 Use node `v18.12.1`
