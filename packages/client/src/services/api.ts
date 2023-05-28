@@ -1,14 +1,14 @@
 import axios from "axios";
-import Cookies from "js-cookie";
+import auth from "../auth";
 
-const auth = Cookies.get("auth-token")
-  ? { Authorization: `Bearer ${Cookies.get("auth-token")}` }
-  : null;
+const authorization = auth() ? { Authorization: auth() } : null;
+
+const url = process.env.BASE_URL || "localhost:3001";
 
 const api = axios.create({
-  baseURL: process.env.BASE_URL,
+  baseURL: url,
   headers: {
-    ...auth,
+    ...authorization,
   },
 });
 
