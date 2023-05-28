@@ -1,5 +1,5 @@
-import db from '../../../models'
-import { generateToken } from "../Auth"
+import db from '../../models'
+import { generateToken } from "./Auth"
 import bcrypt from "bcryptjs";
 
 type RegisterType = {
