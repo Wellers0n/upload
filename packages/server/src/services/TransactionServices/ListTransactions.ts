@@ -1,4 +1,4 @@
-import db from '../../../models'
+import db from '../../models'
 
 type ListType = {
   limit: number
