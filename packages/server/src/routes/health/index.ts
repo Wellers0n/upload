@@ -39,7 +39,7 @@ const healthRoutes = Router()
  *                error:
  *                  type: boolean
  *              example:
- *                message: Not authorized!
+ *                message: Não autorizado!
  *                error: true
  */
 healthRoutes.get('/', authentication, HealthController)

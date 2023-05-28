@@ -28,11 +28,8 @@ const uploadRoutes = Router()
  *              properties:
  *                message:
  *                  type: string
- *                error:
- *                  type: boolean
  *              example:
  *                message: Arquivo enviado com sucesso!
- *                error: false
  *       404:
  *         description: Error
  *         content:
