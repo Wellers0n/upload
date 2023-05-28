@@ -7,13 +7,13 @@ const List = async (request: Request, response: Response) => {
 
   const { limit = 10, offset = 0 } = request.query
 
-  const { error, transactions } = await ListTransactionsServices({
+  const { error, transactions, totalPages } = await ListTransactionsServices({
     offset: Number(offset),
     limit: Number(limit),
     user
   })
 
-  return response.status(200).json({ error, transactions })
+  return response.status(200).json({ error, transactions, limit, offset, totalPages })
 }
 
 export default List

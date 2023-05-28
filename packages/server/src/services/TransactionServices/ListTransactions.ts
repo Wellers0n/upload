@@ -6,7 +6,7 @@ type ListType = {
   user: { id: number }
 }
 const List = async ({ limit, offset, user }: ListType) => {
-  const transactions = await db.Transactions.findAll({
+  const data = await db.Transactions.findAndCountAll({
     where: {
       user_id: user.id
     },
@@ -15,7 +15,11 @@ const List = async ({ limit, offset, user }: ListType) => {
     order: [['createdAt', 'DESC']]
   })
 
-  return { error: false, transactions }
+  return {
+    error: false,
+    transactions: data.rows,
+    totalPages: Math.round(data.count / limit)
+  }
 }
 
 export default List
