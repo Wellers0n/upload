@@ -14,8 +14,8 @@ type Response = {
 };
 
 type Error = {
-  message: string
-}
+  message: string;
+};
 
 const useLoginSessionMutation = () => {
   const navigate = useNavigate();
@@ -40,7 +40,7 @@ const useLoginSessionMutation = () => {
     },
     onError: (error: AxiosError<Error>) => {
       return enqueueSnackbar({
-        message: error?.response?.data.message || "Houve algum erro ao logar!",
+        message: error?.response?.data.message || "Error ao logar!",
         variant: "error",
       });
     },
