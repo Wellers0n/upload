@@ -9,13 +9,13 @@ The client uses react and material ui to build front-end
 ## Screens
 
 ### Login
-<img src="./public/images/login.png"/>
+<img src="./public/img/login.png"/>
 
 ### Register
-<img src="./public/images/register.png"/>
+<img src="./public/img/register.png"/>
 
 ### Home
-<img src="./public/images/home.png"/>
+<img src="./public/img/home.png"/>
 
 ### Transactions
-<img src="./public/images/transactions.png"/>
+<img src="./public/img/transactions.png"/>
