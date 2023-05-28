@@ -2,7 +2,7 @@ import { resolve } from 'path'
 const { promises: fsPromises } = require('fs')
 import { tmpFolder } from '../../helpers/tmpFolder'
 import mime from 'mime'
-import transactionFormatting from './helpers/transactionFormatting'
+import transactionFormattingFile from './helpers/transactionFormattingFile'
 import db from '../../models'
 
 const UploadTransactionFileService = async (
@@ -20,13 +20,9 @@ const UploadTransactionFileService = async (
 
   const transactions = contents.split(/\r?\n/)
 
-  const transactionFormatted = transactionFormatting(transactions, user)
+  const transactionFormatted = transactionFormattingFile(transactions, user)
 
-  transactionFormatted.map(async transaction => {
-    if (transaction) {
-      await db.Transactions.create(transaction)
-    }
-  })
+  await db.Transactions.bulkCreate(transactionFormatted)
 
   return { status: 200, message: 'Arquivo enviado com sucesso!' }
 }

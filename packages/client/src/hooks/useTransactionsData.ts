@@ -51,7 +51,7 @@ const useTransactionsData = (props: Props) => {
     enqueueSnackbar({
       message:
         error.response?.data?.message ||
-        "Algo deu errado ao bustar as transações!",
+        "Algo deu errado ao buscar as transações!",
       variant: "error",
     });
   }
