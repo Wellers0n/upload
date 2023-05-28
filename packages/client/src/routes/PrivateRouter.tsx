@@ -3,6 +3,7 @@ import { Navigate, RouteProps } from "react-router";
 import auth from "../auth";
 
 const PrivateRouter = ({ children }: RouteProps) => {
+  
   if (!auth()) {
     return <Navigate to="/login" replace />;
   }
