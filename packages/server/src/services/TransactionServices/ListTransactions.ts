@@ -16,7 +16,6 @@ const List = async ({ limit, offset, user }: ListType) => {
   })
 
   return {
-    error: false,
     transactions: data.rows,
     totalPages: Math.round(data.count / limit)
   }

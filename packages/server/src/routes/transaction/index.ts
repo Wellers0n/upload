@@ -33,8 +33,6 @@ const transactionRoutes = Router()
  *              properties:
  *                transactions:
  *                  type: array
- *                error:
- *                  type: boolean
  *              example:
  *                transactions: [{
  *                                 "id": 38,
@@ -62,7 +60,9 @@ const transactionRoutes = Router()
  *                                 "createdAt": "2022-11-26T19:32:56.822Z",
  *                                 "updatedAt": "2022-11-26T19:32:56.822Z"
  *                           }]
- *                error: false
+ *                limit: 10
+ *                offset: 1
+ *                totalPages: 2
  *       401:
  *         description: Error
  *         content:
@@ -72,11 +72,8 @@ const transactionRoutes = Router()
  *              properties:
  *                message:
  *                  type: string
- *                error:
- *                  type: boolean
  *              example:
- *                message: Not authorized!
- *                error: true
+ *                message: Não autorizado!
  */
 transactionRoutes.get('/list', authentication, ListTransactionsController)
 
