@@ -26,8 +26,8 @@ Use node `v18.12.1`
 
 ## Initing in the your PC
 
-- For clone the project `git clone https://github.com/Wellers0n/4fun-upload.git`
-- Enter in the folder `cd 4fun-upload/`
+- For clone the project `git clone https://github.com/Wellers0n/upload.git`
+- Enter in the folder `cd upload/`
 
 ## Install dependencies
 
