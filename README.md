@@ -85,12 +85,6 @@ backend port: `http://localhost:3001`
 
 Visit [http://localhost:3001/docs/](http://localhost:3001/docs/) for more information about the documentation
 
-## kill docker-compose
-
-```sh
-docker-compose down -v
-```
-
 ## Stack used
 
 [ReactJS](https://reactjs.org/)<br/>
