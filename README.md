@@ -59,12 +59,21 @@ pg_ctl -D "C:\Program Files\PostgreSQL\<Version>\data" stop
 
 ## Init application
 
-Init frontend, backend and postgres with docker-compose
+Init frontend, backend and postgres with docker-compose or via script
 
 At the root directory, run the following command:
 
+#### Using docker
+
 ```sh
  docker-compose up --build -d
+```
+
+#### Via script locally
+- NOTE: If starting the application locally your need postgres installed in your machine
+
+```sh
+ yarn dev
 ```
 
 ## Run migrations
