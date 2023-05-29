@@ -36,7 +36,7 @@ const Login: React.FC = (props) => {
   return (
     <Container>
       <Form onSubmit={handleSubmit(submit)}>
-        <Title>Log in</Title>
+        <Title>Cadastrar</Title>
         <Stack
           width={"100%"}
           spacing={2}
@@ -45,28 +45,42 @@ const Login: React.FC = (props) => {
           <Controller
             name={"name"}
             control={control}
-            render={({ field: { onChange, value } }) => (
+            rules={{
+              required: "Nome é obrigatória",
+            }}
+            render={({ field: { onChange, value }, fieldState: { error } }) => (
               <TextField
                 onChange={onChange}
                 value={value}
                 InputLabelProps={{
                   shrink: true,
                 }}
+                error={!!error}
+                helperText={error ? error.message : null}
                 fullWidth
-                label={"Name"}
+                label={"Nome"}
               />
             )}
           />
           <Controller
             name={"email"}
             control={control}
-            render={({ field: { onChange, value } }) => (
+            rules={{
+              required: "Email é obrigatória",
+              pattern: {
+                value: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
+                message: "Digite um email válido",
+              },
+            }}
+            render={({ field: { onChange, value }, fieldState: { error } }) => (
               <TextField
                 onChange={onChange}
                 value={value}
                 InputLabelProps={{
                   shrink: true,
                 }}
+                error={!!error}
+                helperText={error ? error.message : null}
                 fullWidth
                 label={"Email"}
               />
@@ -76,13 +90,22 @@ const Login: React.FC = (props) => {
           <Controller
             name={"password"}
             control={control}
-            render={({ field: { onChange, value } }) => (
+            rules={{
+              required: "Senha é obrigatória",
+              minLength: {
+                value: 3,
+                message: "Digite pelo menos 3 caracteres",
+              },
+            }}
+            render={({ field: { onChange, value }, fieldState: { error } }) => (
               <TextField
                 onChange={onChange}
                 value={value}
                 InputLabelProps={{
                   shrink: true,
                 }}
+                error={!!error}
+                helperText={error ? error.message : null}
                 fullWidth
                 type="password"
                 label={"Senha"}
@@ -103,7 +126,9 @@ const Login: React.FC = (props) => {
           >
             Cadastrar
           </Button>
-          <Button variant="text" onClick={() => navigate("/login")}>Login</Button>
+          <Button variant="text" onClick={() => navigate("/login")}>
+            Logar
+          </Button>
         </Stack>
       </Form>
     </Container>

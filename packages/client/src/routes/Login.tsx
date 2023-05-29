@@ -31,7 +31,7 @@ const Login: React.FC = (props) => {
   return (
     <Container>
       <Form onSubmit={handleSubmit(submit)}>
-        <Title>Log in</Title>
+        <Title>Logar</Title>
         <Stack
           width={"100%"}
           spacing={2}
@@ -40,10 +40,19 @@ const Login: React.FC = (props) => {
           <Controller
             name={"email"}
             control={control}
-            render={({ field: { onChange, value } }) => (
+            rules={{
+              required: "Email é obrigatória",
+              pattern: {
+                value: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
+                message: "Digite um email válido",
+              },
+            }}
+            render={({ field: { onChange, value }, fieldState: { error } }) => (
               <TextField
                 onChange={onChange}
                 value={value}
+                error={!!error}
+                helperText={error ? error.message : null}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -56,13 +65,22 @@ const Login: React.FC = (props) => {
           <Controller
             name={"password"}
             control={control}
-            render={({ field: { onChange, value } }) => (
+            rules={{
+              required: "Senha é obrigatória",
+              minLength: {
+                value: 3,
+                message: "Digite pelo menos 3 caracteres",
+              },
+            }}
+            render={({ field: { onChange, value }, fieldState: { error } }) => (
               <TextField
                 onChange={onChange}
                 value={value}
                 InputLabelProps={{
                   shrink: true,
                 }}
+                error={!!error}
+                helperText={error ? error.message : null}
                 fullWidth
                 type="password"
                 label={"Senha"}
@@ -84,7 +102,7 @@ const Login: React.FC = (props) => {
             Entrar
           </Button>
           <Button variant="text" onClick={() => navigate("/register")}>
-            Register
+            Cadastrar
           </Button>
         </Stack>
       </Form>
