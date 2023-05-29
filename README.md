@@ -35,16 +35,6 @@ Use node `v18.12.1`
 yarn
 ```
 
-## Init application
-
-Init frontend, backend and postgres with docker-compose
-
-At the root directory, run the following command:
-
-```sh
- docker-compose up --build -d
-```
-
 ## Avoid conflict
 
 - WARNIGN: stop your machine's postgres to avoid conflict:
@@ -65,6 +55,16 @@ sudo service postgresql stop
 
 ```sh
 pg_ctl -D "C:\Program Files\PostgreSQL\<Version>\data" stop
+```
+
+## Init application
+
+Init frontend, backend and postgres with docker-compose
+
+At the root directory, run the following command:
+
+```sh
+ docker-compose up --build -d
 ```
 
 ## Run migrations
