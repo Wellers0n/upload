@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -8,22 +8,24 @@ const Header = () => {
   return (
     <Container>
       <Items>
-        <Item onClick={() => navigate("/")}>Home</Item>
-        <Item onClick={() => navigate("/transactions")}>Transactions</Item>
+        <Item onClick={() => navigate("/")}>Início</Item>
+        <Item onClick={() => navigate("/transactions")}>Transações</Item>
       </Items>
       <Items>
-        <Item onClick={() => {
-          localStorage.removeItem('token')
-          navigate("/login")
-        }}>
-          Logout
+        <Item
+          onClick={() => {
+            localStorage.removeItem("token");
+            navigate("/login");
+          }}
+        >
+          Sair
         </Item>
       </Items>
     </Container>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
 
 const Container = styled.header`
   height: 100px;
@@ -38,7 +40,7 @@ const Items = styled.ul`
   display: flex;
   list-style: none;
   color: #fff;
-`
+`;
 
 const Item = styled.ul`
   margin-left: 20px;
@@ -48,4 +50,4 @@ const Item = styled.ul`
   &:hover {
     text-decoration: underline;
   }
-`
+`;

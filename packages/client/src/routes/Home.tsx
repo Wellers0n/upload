@@ -40,7 +40,13 @@ const Home = () => {
             <Controller
               name={"file"}
               control={control}
-              render={({ field: { onChange, value } }) => (
+              rules={{
+                required: "Arquivo é obrigatória",
+              }}
+              render={({
+                field: { onChange, value },
+                fieldState: { error },
+              }) => (
                 <TextField
                   onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                     onChange(event);
@@ -49,6 +55,8 @@ const Home = () => {
                     setFile(event?.target?.files[0]);
                   }}
                   value={value}
+                  error={!!error}
+                  helperText={error ? error.message : null}
                   InputLabelProps={{
                     shrink: true,
                   }}
