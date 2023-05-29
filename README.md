@@ -37,7 +37,7 @@ yarn
 
 ## Avoid conflict
 
-- WARNIGN: stop your machine's postgres to avoid conflict:
+- WARNIGN: If starting the application with docker-compose, avoid conflicts
 
 #### Mac
 
