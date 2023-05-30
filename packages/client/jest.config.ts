@@ -32,6 +32,7 @@ const config: Config.InitialOptions = {
     // Handle module aliases
     "^@/components/(.*)$": "<rootDir>/src/components/$1",
     "^@/hooks/(.*)$": "<rootDir>/src/hooks/$1",
+    "^@/hooks": "<rootDir>/src/hooks/index",
     "^@/services/(.*)$": "<rootDir>/src/services/$1",
     "^@/services": "<rootDir>/src/services/index",
     "^@/types/(.*)$": "<rootDir>/types/$1",
@@ -39,7 +40,7 @@ const config: Config.InitialOptions = {
   },
   testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
-  setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
+  setupFilesAfterEnv: ["./jest.setup.ts"],
 };
 
 export default config;

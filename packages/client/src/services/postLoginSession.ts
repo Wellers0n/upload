@@ -20,8 +20,6 @@ const postLoginSession = async (props: Props): Promise<Response> => {
 
   const response = await api.post<Response>("/session/login", data);
 
-  console.log({response})
-
   return response.data;
 };
 

@@ -38,8 +38,6 @@ const getTransactions = async (props: Props): Promise<Response> => {
     params,
   });
 
-  console.log({ response });
-
   return response.data;
 };
 

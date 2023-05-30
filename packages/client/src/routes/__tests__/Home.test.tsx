@@ -1,11 +1,15 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import Home from "../Home";
 import Wrapper from "../../test/Wrapper";
 import userEvent from "@testing-library/user-event";
+import { rest, server } from "@/test/server";
+import { act } from "react-dom/test-utils";
 
 jest.mock("react-router-dom", () => ({
   useNavigate: jest.fn(() => jest.fn),
 }));
+
+const url = process.env.BASE_URL || "http://localhost:3001";
 
 describe("Home", () => {
   it("should render home screen", () => {
@@ -36,7 +40,43 @@ describe("Home", () => {
     );
   });
 
+  it("should render require file input", async () => {
+    server.use(
+      rest.post(`${url}/upload/transaction-file`, async (req, res, ctx) => {
+        return res(
+          ctx.status(200),
+          ctx.json({
+            message: "Arquivo enviado com sucesso!",
+          })
+        );
+      })
+    );
+    render(
+      <Wrapper>
+        <Home />
+      </Wrapper>
+    );
+
+    const submitBtn = screen.getByText("Enviar");
+
+    await act(() => {
+      fireEvent.click(submitBtn);
+    });
+
+    expect(screen.getByText("Arquivo é obrigatória")).toBeInTheDocument();
+  });
+
   it("should render file selected", async () => {
+    server.use(
+      rest.post(`${url}/upload/transaction-file`, async (req, res, ctx) => {
+        return res(
+          ctx.status(200),
+          ctx.json({
+            message: "Arquivo enviado com sucesso!",
+          })
+        );
+      })
+    );
     render(
       <Wrapper>
         <Home />

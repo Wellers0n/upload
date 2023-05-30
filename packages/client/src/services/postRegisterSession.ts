@@ -21,8 +21,6 @@ const postRegisterSession = async (props: Props): Promise<Response> => {
 
   const response = await api.post<Response>("/session/register", data);
 
-  console.log({response})
-
   return response.data;
 };
 

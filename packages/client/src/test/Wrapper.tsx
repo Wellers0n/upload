@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { SnackbarProvider } from "notistack";
 
 type Props = {
   children: string | JSX.Element | JSX.Element[];
@@ -15,7 +16,16 @@ const Wrapper = ({ children }: Props) => {
   });
 
   return (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    <>
+      <SnackbarProvider
+        maxSnack={3}
+        anchorOrigin={{ horizontal: "right", vertical: "top" }}
+      >
+        <QueryClientProvider client={queryClient}>
+          {children}
+        </QueryClientProvider>
+      </SnackbarProvider>
+    </>
   );
 };
 

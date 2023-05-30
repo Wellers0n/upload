@@ -51,7 +51,6 @@ const Home = () => {
                   onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                     onChange(event);
 
-                    console.log(event?.target?.files)
                     if (!event.target.files) return;
                     setFile(event?.target?.files[0]);
                   }}
