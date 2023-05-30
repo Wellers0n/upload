@@ -1,43 +1,60 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import Home from "../Home";
+import Wrapper from "../../test/Wrapper";
+import userEvent from "@testing-library/user-event";
 
-jest.mock('react-router-dom', () => ({
+jest.mock("react-router-dom", () => ({
   useNavigate: jest.fn(() => jest.fn),
-}))
+}));
 
 describe("Home", () => {
-  it('should render home screen', () => {
-    render(<Home />)
+  it("should render home screen", () => {
+    render(
+      <Wrapper>
+        <Home />
+      </Wrapper>
+    );
 
-    expect(screen.getByTitle("file")).toBeInTheDocument()
+    expect(
+      screen.getByText(
+        "Caso não tenha o arquivo .txt faça o download do arquivo teste"
+      )
+    ).toBeInTheDocument();
   });
 
-  it('should render download test file', () => {
-    render(<Home />)
+  it("should render download test file", () => {
+    render(
+      <Wrapper>
+        <Home />
+      </Wrapper>
+    );
 
-    expect(screen.getByText("Download test file")).toBeInTheDocument()
-    expect(screen.getByText("Download test file")).toHaveAttribute("href", "./sales.txt")
-
+    expect(screen.getByText("Download arquivo teste")).toBeInTheDocument();
+    expect(screen.getByText("Download arquivo teste")).toHaveAttribute(
+      "href",
+      "./sales.txt"
+    );
   });
 
-  it('should render file selected', async () => {
-    render(<Home />)
+  it("should render file selected", async () => {
+    render(
+      <Wrapper>
+        <Home />
+      </Wrapper>
+    );
 
-    const input = screen.getByTitle("file")
+    const input = screen.getByLabelText("Arquivo");
 
+    const str = JSON.stringify("file value");
+    const blob = new Blob([str]);
+    const file = new File([blob], "sales.txt", {
+      type: "text/plain",
+    });
 
-    const file = new File(["test"], "test.txt", { type: "text/plain" });
+    await userEvent.upload(input, file);
 
-
-    await waitFor(() => {
-      fireEvent.change(input, {
-        target: { files: { item: () => file, length: 1, 0: file } },
-      });
-    })
-
-    expect(screen.getByText("Download test file")).toBeInTheDocument()
-    expect(screen.getByText("Download test file")).toHaveAttribute("href", "./sales.txt")
-    expect(screen.getByText("File: test.txt")).toBeInTheDocument()
-
+    expect(
+      screen.getByDisplayValue("C:\\fakepath\\sales.txt")
+    ).toBeInTheDocument();
   });
-})
+});

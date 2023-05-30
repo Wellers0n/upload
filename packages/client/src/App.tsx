@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+// import React, { Suspense } from "react";
 import Router from "./Router";
 import { ThemeProvider } from "@mui/material";
 import theme from "./theme";
@@ -12,7 +12,7 @@ function App() {
   const [queryClient] = React.useState(() => new QueryClient());
 
   return (
-    <Suspense fallback={"Loading..."}>
+    <React.Suspense fallback={"Loading..."}>
       <ThemeProvider theme={theme}>
         <SnackbarProvider
           maxSnack={3}
@@ -24,7 +24,7 @@ function App() {
           </QueryClientProvider>
         </SnackbarProvider>
       </ThemeProvider>
-    </Suspense>
+    </React.Suspense>
   );
 }
 

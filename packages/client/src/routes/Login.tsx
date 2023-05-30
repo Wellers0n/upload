@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Button, Stack, TextField } from "@mui/material";
@@ -10,7 +9,7 @@ type Submit = {
   password: string;
 };
 
-const Login: React.FC = (props) => {
+const Login = () => {
   const { mutateLoginSession } = useLoginSessionMutation();
   const navigate = useNavigate();
 
