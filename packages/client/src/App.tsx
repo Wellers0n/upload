@@ -1,4 +1,3 @@
-// import React, { Suspense } from "react";
 import Router from "./Router";
 import { ThemeProvider } from "@mui/material";
 import theme from "./theme";
