@@ -63,18 +63,33 @@ Init frontend, backend and postgres with docker-compose or via script
 
 At the root directory, run the following command:
 
-#### Using docker
+### Using docker
 
 ```sh
  docker-compose up --build -d
 ```
 
-#### Via script locally
+### Or locally via script
+
 - NOTE: If starting the application locally your need postgres installed in your machine
 
+you need to create a database and give access with a role
+
+inside postgres:
+
+```ql
+ CREATE DATABASE postgres;
+ 
+ CREATE ROLE postgres;
+ 
+ ALTER ROLE "postgres" WITH LOGIN;
+```
+
+run application:
 ```sh
  yarn dev
 ```
+
 
 ## Run migrations
 
