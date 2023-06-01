@@ -40,7 +40,7 @@ const Login = () => {
             name={"email"}
             control={control}
             rules={{
-              required: "Email é obrigatória",
+              required: "Email é obrigatório",
               pattern: {
                 value: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
                 message: "Digite um email válido",
@@ -65,7 +65,7 @@ const Login = () => {
             name={"password"}
             control={control}
             rules={{
-              required: "Senha é obrigatória",
+              required: "Senha é obrigatório",
               minLength: {
                 value: 3,
                 message: "Digite pelo menos 3 caracteres",

@@ -11,6 +11,7 @@ type Data = {
 
 type Response = {
   token: string;
+  message: string;
 };
 
 type Error = {
@@ -30,7 +31,7 @@ const useLoginSessionMutation = () => {
       }),
     onSuccess: (data: Response) => {
       enqueueSnackbar({
-        message: "Logado com sucesso!",
+        message: data.message || "Logado com sucesso!",
         variant: "success",
       });
 
