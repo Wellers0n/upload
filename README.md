@@ -93,7 +93,7 @@ run application:
 
 ## Run migrations
 
-- NOTE: Wait for docker-compose, to execute the following commands
+- NOTE: Wait for docker-compose or start postgres locally, to run the following command
 
 ```sh
 yarn migrate:server up
