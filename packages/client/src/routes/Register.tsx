@@ -45,7 +45,7 @@ const Login: React.FC = (props) => {
             name={"name"}
             control={control}
             rules={{
-              required: "Nome é obrigatória",
+              required: "Nome é obrigatório",
             }}
             render={({ field: { onChange, value }, fieldState: { error } }) => (
               <TextField
@@ -65,7 +65,7 @@ const Login: React.FC = (props) => {
             name={"email"}
             control={control}
             rules={{
-              required: "Email é obrigatória",
+              required: "Email é obrigatório",
               pattern: {
                 value: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
                 message: "Digite um email válido",
@@ -90,7 +90,7 @@ const Login: React.FC = (props) => {
             name={"password"}
             control={control}
             rules={{
-              required: "Senha é obrigatória",
+              required: "Senha é obrigatório",
               minLength: {
                 value: 3,
                 message: "Digite pelo menos 3 caracteres",

@@ -1,5 +1,5 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import Login from "../Login";
+import Register from "../Register";
 import Wrapper from "../../test/Wrapper";
 import userEvent from "@testing-library/user-event";
 import { rest, server } from "@/test/server";
@@ -11,38 +11,41 @@ jest.mock("react-router-dom", () => ({
 
 const url = process.env.BASE_URL || "http://localhost:3001";
 
-describe("Login", () => {
-  it("should render login screen", () => {
+describe("Register", () => {
+  it("should render register screen", () => {
     render(
       <Wrapper>
-        <Login />
+        <Register />
       </Wrapper>
     );
 
-    expect(screen.getByText("Logar")).toBeInTheDocument();
+    const [title] = screen.getAllByText("Cadastrar")
+
+    expect(title).toBeInTheDocument();
   });
 
-  it("should render require login inputs", async () => {
+  it("should render require register inputs", async () => {
     render(
       <Wrapper>
-        <Login />
+        <Register />
       </Wrapper>
     );
 
-    const submitBtn = screen.getByText("Entrar");
+    const [_, submitBtn] = screen.getAllByText("Cadastrar")
 
     await act(() => {
       fireEvent.click(submitBtn);
     });
 
     expect(screen.getByText("Email é obrigatório")).toBeInTheDocument();
+    expect(screen.getByText("Nome é obrigatório")).toBeInTheDocument();
     expect(screen.getByText("Senha é obrigatório")).toBeInTheDocument();
   });
 
   it("should render require email valid", async () => {
     render(
       <Wrapper>
-        <Login />
+        <Register />
       </Wrapper>
     );
 
@@ -50,23 +53,25 @@ describe("Login", () => {
 
     fireEvent.change(emailInput, { target: { value: "admin@" } });
 
-    const submitBtn = screen.getByText("Entrar");
+    const [_, submitBtn] = screen.getAllByText("Cadastrar")
+
 
     await act(() => {
       fireEvent.click(submitBtn);
     });
 
     expect(screen.getByText("Digite um email válido")).toBeInTheDocument();
+    expect(screen.getByText("Nome é obrigatório")).toBeInTheDocument();
     expect(screen.getByText("Senha é obrigatório")).toBeInTheDocument();
   });
 
-  it("should render success message when login", async () => {
+  it("should render success message when register", async () => {
     server.use(
-      rest.post(`${url}/session/login`, async (req, res, ctx) => {
+      rest.post(`${url}/session/register`, async (req, res, ctx) => {
         return res(
           ctx.status(200),
           ctx.json({
-            message: "Login com sucesso!",
+            message: "Usuário criado com sucesso!",
             token:
               "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
           })
@@ -75,32 +80,34 @@ describe("Login", () => {
     );
     render(
       <Wrapper>
-        <Login />
+        <Register />
       </Wrapper>
     );
 
     const emailInput = screen.getByLabelText("Email");
+    const nameInput = screen.getByLabelText("Nome");
     const passwordInput = screen.getByLabelText("Senha");
 
+    fireEvent.change(nameInput, { target: { value: "admin" } });
     fireEvent.change(emailInput, { target: { value: "admin@admin.com" } });
     fireEvent.change(passwordInput, { target: { value: "admin" } });
 
-    const submitBtn = screen.getByText("Entrar");
+    const [_, submitBtn] = screen.getAllByText("Cadastrar")
 
     await act(() => {
       fireEvent.click(submitBtn);
     });
 
-    expect(screen.getByText("Login com sucesso!")).toBeInTheDocument();
+    expect(screen.getByText("Usuário criado com sucesso!")).toBeInTheDocument();
   });
 
-  it("should render error message when login", async () => {
+  it("should render error message when register", async () => {
     server.use(
-      rest.post(`${url}/session/login`, async (req, res, ctx) => {
+      rest.post(`${url}/session/register`, async (req, res, ctx) => {
         return res(
           ctx.status(400),
           ctx.json({
-            message: "Error ao logar",
+            message: "Houve algum error ao registrar",
             token: null,
           })
         );
@@ -108,22 +115,25 @@ describe("Login", () => {
     );
     render(
       <Wrapper>
-        <Login />
+        <Register />
       </Wrapper>
     );
 
     const emailInput = screen.getByLabelText("Email");
+    const nameInput = screen.getByLabelText("Nome");
     const passwordInput = screen.getByLabelText("Senha");
 
+    fireEvent.change(nameInput, { target: { value: "admin" } });
     fireEvent.change(emailInput, { target: { value: "admin@admin.com" } });
     fireEvent.change(passwordInput, { target: { value: "admin" } });
 
-    const submitBtn = screen.getByText("Entrar");
+    const [_, submitBtn] = screen.getAllByText("Cadastrar")
+
 
     await act(() => {
       fireEvent.click(submitBtn);
     });
 
-    expect(screen.getByText("Error ao logar")).toBeInTheDocument();
+    expect(screen.getByText("Houve algum error ao registrar")).toBeInTheDocument();
   });
 });
