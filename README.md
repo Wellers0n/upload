@@ -73,7 +73,7 @@ At the root directory, run the following command:
 
 - NOTE: If starting the application locally your need postgres installed in your machine
 
-you need to create a database and give access with a role
+you need to create a database and give access
 
 inside postgres:
 
