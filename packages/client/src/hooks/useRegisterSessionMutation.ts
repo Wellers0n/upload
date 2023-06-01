@@ -12,6 +12,7 @@ type Data = {
 
 type Response = {
   token: string;
+  message: string;
 };
 
 type Error = {
@@ -32,7 +33,7 @@ const useRegisterSessionMutation = () => {
       }),
     onSuccess: (data: Response) => {
       enqueueSnackbar({
-        message: "Registrado com sucesso!",
+        message: data.message || "Registrado com sucesso!",
         variant: "success",
       });
 

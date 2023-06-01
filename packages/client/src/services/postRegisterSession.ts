@@ -3,7 +3,7 @@ import Api from "./api";
 type Data = {
   email: string;
   password: string;
-  name: string
+  name: string;
 };
 
 type Props = {
@@ -12,16 +12,15 @@ type Props = {
 
 type Response = {
   token: string;
+  message: string;
 };
 
 const postRegisterSession = async (props: Props): Promise<Response> => {
   const { data } = props;
 
-  const api = Api()
+  const api = Api();
 
   const response = await api.post<Response>("/session/register", data);
-
-  console.log({response})
 
   return response.data;
 };

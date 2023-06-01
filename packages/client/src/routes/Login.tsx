@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Button, Stack, TextField } from "@mui/material";
@@ -10,7 +9,7 @@ type Submit = {
   password: string;
 };
 
-const Login: React.FC = (props) => {
+const Login = () => {
   const { mutateLoginSession } = useLoginSessionMutation();
   const navigate = useNavigate();
 
@@ -41,7 +40,7 @@ const Login: React.FC = (props) => {
             name={"email"}
             control={control}
             rules={{
-              required: "Email é obrigatória",
+              required: "Email é obrigatório",
               pattern: {
                 value: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
                 message: "Digite um email válido",
@@ -66,7 +65,7 @@ const Login: React.FC = (props) => {
             name={"password"}
             control={control}
             rules={{
-              required: "Senha é obrigatória",
+              required: "Senha é obrigatório",
               minLength: {
                 value: 3,
                 message: "Digite pelo menos 3 caracteres",
