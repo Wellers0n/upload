@@ -23,16 +23,7 @@ describe("Login", () => {
   });
 
   fit("should render require login inputs", async () => {
-    // server.use(
-    //   rest.post(`${url}/upload/transaction-file`, async (req, res, ctx) => {
-    //     return res(
-    //       ctx.status(200),
-    //       ctx.json({
-    //         message: "Arquivo enviado com sucesso!",
-    //       })
-    //     );
-    //   })
-    // );
+    
     render(
       <Wrapper>
         <Login />
