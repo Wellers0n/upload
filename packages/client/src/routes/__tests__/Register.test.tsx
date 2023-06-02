@@ -1,7 +1,6 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import Register from "../Register";
-import Wrapper from "../../test/Wrapper";
-import userEvent from "@testing-library/user-event";
+import Wrapper from "@/test/Wrapper";
 import { rest, server } from "@/test/server";
 import { act } from "react-dom/test-utils";
 

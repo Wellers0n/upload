@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import Home from "../Home";
-import Wrapper from "../../test/Wrapper";
+import Wrapper from "@/test/Wrapper";
 import userEvent from "@testing-library/user-event";
 import { rest, server } from "@/test/server";
 import { act } from "react-dom/test-utils";

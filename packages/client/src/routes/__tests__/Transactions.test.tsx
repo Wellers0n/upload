@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import Transactions from "../Transactions";
-import Wrapper from "../../test/Wrapper";
+import Wrapper from "@/test/Wrapper";
 
 import { rest, server } from "@/test/server";
 
