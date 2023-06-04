@@ -17,24 +17,9 @@ const List = async ({ limit, offset, user }: ListType) => {
     order: [['id', 'DESC']]
   })
 
-  const totalPositiveAmount = await db.Transactions.sum('amount', {
-    where: { user_id: user.id, signal: '+' }
-  })
-  const totalNegativeAmount = await db.Transactions.sum('amount', {
-    where: { user_id: user.id, signal: '-' }
-  })
-
   return {
     transactions: transactionFormattingData(transactionAllAndCount.rows),
-    totalPages: Math.round(transactionAllAndCount.count / limit),
-    totalPositiveAmount: (totalPositiveAmount / 100).toLocaleString('pt-br', {
-      style: 'currency',
-      currency: 'BRL'
-    }),
-    totalNegativeAmount: (totalNegativeAmount / 100).toLocaleString('pt-br', {
-      style: 'currency',
-      currency: 'BRL'
-    })
+    totalPages: Math.round(transactionAllAndCount.count / limit)
   }
 }
 

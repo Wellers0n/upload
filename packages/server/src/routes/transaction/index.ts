@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import ListTransactionsController from '../../controllers/TransactionController/ListTransactions'
+import ListAmountInfoController from '../../controllers/TransactionController/ListAmountInfo'
 import { authentication } from '../../middleware/authentication'
 
 const transactionRoutes = Router()
@@ -64,7 +65,7 @@ const transactionRoutes = Router()
  *                offset: 1
  *                totalPages: 2
  *       401:
- *         description: Error
+ *         description: Authentication
  *         content:
  *          application/json:
  *            schema:
@@ -74,7 +75,66 @@ const transactionRoutes = Router()
  *                  type: string
  *              example:
  *                message: Não autorizado!
+ *       400:
+ *         description: Error
+ *         content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                message:
+ *                  type: string
+ *              example:
+ *                message: Error ao buscar a lista de transações!
  */
 transactionRoutes.get('/list', authentication, ListTransactionsController)
+
+/**
+ * @swagger
+ * /transaction/amount-info:
+ *   get:
+ *     security:
+ *       - token: []
+ *     description: total amount information
+ *     tags: ["Transaction"]
+ *     responses:
+ *       200:
+ *         description: Success
+ *         content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                transactions:
+ *                  type: array
+ *              example:
+ *                 commissionPaid: R$ 11.450,00
+ *                 commissionReceived: R$ 3.450,00
+ *                 affiliateSelling: R$ 2.450,00
+ *                 producerSale: R$ 5.450,00
+ *       401:
+ *         description: Authentication
+ *         content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                message:
+ *                  type: string
+ *              example:
+ *                message: Não autorizado!
+ *       400:
+ *         description: Error
+ *         content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                message:
+ *                  type: string
+ *              example:
+ *                message: Error ao buscar os valores!
+ */
+transactionRoutes.get('/amount-info', authentication, ListAmountInfoController)
 
 export { transactionRoutes }
