@@ -3,31 +3,28 @@ import ListTransactionsServices from '../../services/TransactionServices/ListTra
 import { getUser } from '../../services/SessionServices/Auth'
 
 const List = async (request: Request, response: Response) => {
-  const user = await getUser(request?.headers?.authorization)
+  try {
+    const user = await getUser(request?.headers?.authorization)
 
-  const { limit = 10, offset = 0 } = request.query
+    const { limit = 10, offset = 0 } = request.query
 
-  const {
-    transactions,
-    totalPages,
-    totalNegativeAmount,
-    totalPositiveAmount
-  } = await ListTransactionsServices({
-    offset: Number(offset),
-    limit: Number(limit),
-    user
-  })
+    const { transactions, totalPages } = await ListTransactionsServices({
+      offset: Number(offset),
+      limit: Number(limit),
+      user
+    })
 
-  return response
-    .status(200)
-    .json({
+    return response.status(200).json({
       transactions,
       limit,
       offset,
-      totalPages,
-      totalNegativeAmount,
-      totalPositiveAmount
+      totalPages
     })
+  } catch (error) {
+    return response.status(400).json({
+      message: 'Error ao buscar a lista de transações!'
+    })
+  }
 }
 
 export default List
