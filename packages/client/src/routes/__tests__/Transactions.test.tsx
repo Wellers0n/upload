@@ -19,9 +19,7 @@ describe("Transactionas", () => {
           ctx.json({
             limit: "10",
             offset: "0",
-            totalNegativeAmount: "R$ 1.000,00",
             totalPages: 1,
-            totalPositiveAmount: "R$ 3.100,00",
             transactions: [
               {
                 type: 1,
@@ -66,6 +64,17 @@ describe("Transactionas", () => {
             ],
           })
         );
+      }),
+      rest.get(`${url}/transaction/amount-info`, async (req, res, ctx) => {
+        return res(
+          ctx.status(200),
+          ctx.json({
+            commissionPaid: "R$ 11.450,00",
+            commissionReceived: "R$ 3.450,00",
+            affiliateSelling: "R$ 2.450,00",
+            producerSale: "R$ 5.450,00",
+          })
+        );
       })
     );
   });
@@ -77,11 +86,30 @@ describe("Transactionas", () => {
       </Wrapper>
     );
 
-    const card1 = screen.getByText("Saldo de entrada");
-    const card2 = screen.getByText("Saldo de saída");
+    const card1 = screen.getByText("Comissão recebida");
+    const card2 = screen.getByText("Venda afiliado");
+    const card3 = screen.getByText("Venda produtor");
+    const card4 = screen.getByText("Comissão paga");
 
     expect(card1).toBeInTheDocument();
     expect(card2).toBeInTheDocument();
+    expect(card3).toBeInTheDocument();
+    expect(card4).toBeInTheDocument();
+  });
+
+  it("should render transaction amount information", async () => {
+    render(
+      <Wrapper>
+        <Transactions />
+      </Wrapper>
+    );
+
+    await waitFor(() => {
+      expect(screen.getByText("R$ 11.450,00")).toBeInTheDocument();
+      expect(screen.getByText("R$ 3.450,00")).toBeInTheDocument();
+      expect(screen.getByText("R$ 2.450,00")).toBeInTheDocument();
+      expect(screen.getByText("R$ 5.450,00")).toBeInTheDocument();
+    });
   });
 
   it("should render transaction titles and values", async () => {
