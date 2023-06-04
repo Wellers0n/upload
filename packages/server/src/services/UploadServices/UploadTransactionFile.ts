@@ -1,7 +1,4 @@
-import { resolve } from 'path'
 const { promises: fsPromises } = require('fs')
-import { tmpFolder } from '../../helpers/tmpFolder'
-import mime from 'mime'
 import transactionFormattingFile from './helpers/transactionFormattingFile'
 import db from '../../models'
 
