@@ -1,6 +1,8 @@
-import { ModelAttributes } from 'sequelize/types'
+import {  ModelAttributes } from 'sequelize/types'
+import { DataTypes } from 'sequelize'
 
-const getProperties = (DataTypes): ModelAttributes => {
+
+const getProperties = (): ModelAttributes => {
     return {
         name: {
             allowNull: false,
