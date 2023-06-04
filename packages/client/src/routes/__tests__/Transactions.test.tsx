@@ -79,22 +79,24 @@ describe("Transactionas", () => {
     );
   });
 
-  it("should render transaction screen", () => {
+  it("should render transaction card amount", async () => {
     render(
       <Wrapper>
         <Transactions />
       </Wrapper>
     );
 
-    const card1 = screen.getByText("Comissão recebida");
-    const card2 = screen.getByText("Venda afiliado");
-    const card3 = screen.getByText("Venda produtor");
-    const card4 = screen.getByText("Comissão paga");
+    await waitFor(() => {
+      const [card1] = screen.getAllByText("Comissão recebida");
+      const [card2] = screen.getAllByText("Venda afiliado");
+      const [card3] = screen.getAllByText("Venda produtor");
+      const [card4] = screen.getAllByText("Comissão paga");
 
-    expect(card1).toBeInTheDocument();
-    expect(card2).toBeInTheDocument();
-    expect(card3).toBeInTheDocument();
-    expect(card4).toBeInTheDocument();
+      expect(card1).toBeInTheDocument();
+      expect(card2).toBeInTheDocument();
+      expect(card3).toBeInTheDocument();
+      expect(card4).toBeInTheDocument();
+    });
   });
 
   it("should render transaction amount information", async () => {

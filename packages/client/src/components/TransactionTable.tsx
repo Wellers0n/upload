@@ -9,6 +9,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import Pagination from "@mui/material/Pagination";
+import Skeleton from "@mui/material/Skeleton";
 
 import { Stack } from "@mui/material";
 
@@ -27,9 +28,15 @@ type Props = {
   rows: RowsType[];
   totalPages: number;
   setOffset: (offset: number) => void;
+  loading?: boolean;
 };
 
-const TransactionTable = ({ totalPages, setOffset, rows }: Props) => {
+const TransactionTable = ({
+  totalPages,
+  setOffset,
+  rows,
+  loading = false,
+}: Props) => {
   const handleChangePagination = (
     event: React.ChangeEvent<unknown> | null,
     value: number
@@ -39,48 +46,57 @@ const TransactionTable = ({ totalPages, setOffset, rows }: Props) => {
 
   return (
     <Container>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell>Tipo</TableCell>
-              <TableCell align="left">Data</TableCell>
-              <TableCell align="left">Produto</TableCell>
-              <TableCell align="left">Valor</TableCell>
-              <TableCell align="left">Vendedor</TableCell>
-              <TableCell align="left">Descrição</TableCell>
-              <TableCell align="left">Natureza</TableCell>
-              <TableCell align="left">Sinal</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row, index) => (
-              <TableRow
-                key={index}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  {row.type}
-                </TableCell>
-                <TableCell component="th" scope="row">
-                  {row.date}
-                </TableCell>
-                <TableCell align="left">{row.product}</TableCell>
-                <TableCell align="left">{row.amount}</TableCell>
-                <TableCell align="left">{row.seller}</TableCell>
-                <TableCell align="left">{row.description}</TableCell>
-                <TableCell align="left">{row.nature}</TableCell>
-                <TableCell align="left">{row.signal}</TableCell>
+      {loading ? (
+        <Skeleton
+          variant="rectangular"
+          animation="wave"
+          width={"100%"}
+          height={"60vh"}
+        />
+      ) : (
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>Tipo</TableCell>
+                <TableCell align="left">Data</TableCell>
+                <TableCell align="left">Produto</TableCell>
+                <TableCell align="left">Valor</TableCell>
+                <TableCell align="left">Vendedor</TableCell>
+                <TableCell align="left">Descrição</TableCell>
+                <TableCell align="left">Natureza</TableCell>
+                <TableCell align="left">Sinal</TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-        {!rows.length && (
-          <Stack alignItems={"center"} padding={5}>
-            <div>Nenhum dado de transação</div>
-          </Stack>
-        )}
-      </TableContainer>
+            </TableHead>
+            <TableBody>
+              {rows.map((row, index) => (
+                <TableRow
+                  key={index}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row">
+                    {row.type}
+                  </TableCell>
+                  <TableCell component="th" scope="row">
+                    {row.date}
+                  </TableCell>
+                  <TableCell align="left">{row.product}</TableCell>
+                  <TableCell align="left">{row.amount}</TableCell>
+                  <TableCell align="left">{row.seller}</TableCell>
+                  <TableCell align="left">{row.description}</TableCell>
+                  <TableCell align="left">{row.nature}</TableCell>
+                  <TableCell align="left">{row.signal}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+          {!rows.length && (
+            <Stack alignItems={"center"} padding={5}>
+              <div>Nenhum dado de transação</div>
+            </Stack>
+          )}
+        </TableContainer>
+      )}
       <Stack mt={2}>
         <Pagination
           onChange={handleChangePagination}

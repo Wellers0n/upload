@@ -11,19 +11,17 @@ function App() {
   const [queryClient] = React.useState(() => new QueryClient());
 
   return (
-    <React.Suspense fallback={"Loading..."}>
-      <ThemeProvider theme={theme}>
-        <SnackbarProvider
-          maxSnack={3}
-          anchorOrigin={{ horizontal: "right", vertical: "top" }}
-        >
-          <QueryClientProvider client={queryClient}>
-            <Router />
-            {DEVELOPMENT_ENV && <ReactQueryDevtools initialIsOpen={false} />}
-          </QueryClientProvider>
-        </SnackbarProvider>
-      </ThemeProvider>
-    </React.Suspense>
+    <ThemeProvider theme={theme}>
+      <SnackbarProvider
+        maxSnack={3}
+        anchorOrigin={{ horizontal: "right", vertical: "top" }}
+      >
+        <QueryClientProvider client={queryClient}>
+          <Router />
+          {DEVELOPMENT_ENV && <ReactQueryDevtools initialIsOpen={false} />}
+        </QueryClientProvider>
+      </SnackbarProvider>
+    </ThemeProvider>
   );
 }
 
