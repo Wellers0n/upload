@@ -8,7 +8,7 @@ export const authentication = async (request: Request, response: Response, next:
         jwt.verify(authorization, 'batman', (err, decoded) => {
             if (err) {
                 return response.status(401).json({
-                    message: 'Token não encontrado!',
+                    message: 'Não autorizado!',
                     error: true,
                 });
             }

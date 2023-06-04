@@ -6,17 +6,11 @@ import transactionFormattingFile from './helpers/transactionFormattingFile'
 import db from '../../models'
 
 const UploadTransactionFileService = async (
-  file: string,
+  fileName: string,
   user: { id: number }
 ) => {
-  const originalName = resolve(tmpFolder, file)
-  const ContentType = mime.getType(originalName)
-
-  if (ContentType !== 'text/plain') {
-    return { status: 400, message: 'Tipo de arquivo inválido, envie um .txt!' }
-  }
-
-  const contents = await fsPromises.readFile(originalName, 'utf-8')
+  
+  const contents = await fsPromises.readFile(fileName, 'utf-8')
 
   const transactions = contents.split(/\r?\n/)
 
