@@ -121,23 +121,25 @@ describe("Transactionas", () => {
       </Wrapper>
     );
 
-    const typeColumn = screen.getByText("Tipo");
-    const dateColumn = screen.getByText("Data");
-    const productColumn = screen.getByText("Produto");
-    const valueColumn = screen.getByText("Valor");
-    const sellerColumn = screen.getByText("Vendedor");
-    const descriptionColumn = screen.getByText("Descrição");
-    const natureColumn = screen.getByText("Natureza");
-    const signalColumn = screen.getByText("Sinal");
+    await waitFor(() => {
+      const typeColumn = screen.getByText("Tipo");
+      const dateColumn = screen.getByText("Data");
+      const productColumn = screen.getByText("Produto");
+      const valueColumn = screen.getByText("Valor");
+      const sellerColumn = screen.getByText("Vendedor");
+      const descriptionColumn = screen.getByText("Descrição");
+      const natureColumn = screen.getByText("Natureza");
+      const signalColumn = screen.getByText("Sinal");
 
-    expect(typeColumn).toBeInTheDocument();
-    expect(dateColumn).toBeInTheDocument();
-    expect(productColumn).toBeInTheDocument();
-    expect(valueColumn).toBeInTheDocument();
-    expect(sellerColumn).toBeInTheDocument();
-    expect(descriptionColumn).toBeInTheDocument();
-    expect(natureColumn).toBeInTheDocument();
-    expect(signalColumn).toBeInTheDocument();
+      expect(typeColumn).toBeInTheDocument();
+      expect(dateColumn).toBeInTheDocument();
+      expect(productColumn).toBeInTheDocument();
+      expect(valueColumn).toBeInTheDocument();
+      expect(sellerColumn).toBeInTheDocument();
+      expect(descriptionColumn).toBeInTheDocument();
+      expect(natureColumn).toBeInTheDocument();
+      expect(signalColumn).toBeInTheDocument();
+    });
 
     await waitFor(() => {
       expect(screen.getAllByText("DESENVOLVEDOR FULL STACK")).toHaveLength(2);
