@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import TransactionFile from '../../controllers/UploadController/TransactionFile'
-import { storage } from "../../middleware/upload";
-import multer from "multer";
+import { storage } from '../../middleware/upload'
+import multer from 'multer'
 import { authentication } from '../../middleware/authentication'
 
 const upload = multer({
@@ -14,9 +14,9 @@ const uploadRoutes = Router()
  * @swagger
  * /upload/transaction-file:
  *   post:
- *     security: 
+ *     security:
  *       - token: []
- *     description: receive a .txt file 
+ *     description: receive a .txt file
  *     tags: ["Upload"]
  *     responses:
  *       200:
@@ -30,19 +30,6 @@ const uploadRoutes = Router()
  *                  type: string
  *              example:
  *                message: Arquivo enviado com sucesso!
- *       404:
- *         description: Error
- *         content:
- *          application/json:
- *            schema:
- *              type: object
- *              properties:
- *                message:
- *                  type: string
- *                error:
- *                  type: boolean
- *              example:
- *                message: Arquivo não encontrado
  *       400:
  *         description: Error
  *         content:
@@ -52,12 +39,23 @@ const uploadRoutes = Router()
  *              properties:
  *                message:
  *                  type: string
- *                error:
- *                  type: boolean
- *              example:
- *                message: Tipo de arquivo inválido, envie um .txt!
+ *                token:
+ *                  type: ["string", "null"]
+ *            examples:
+ *                required:
+ *                  summary: field required
+ *                  value:
+ *                    message: Arquivo é obrigatório.
+ *                required-txt:
+ *                  summary: verify .txt
+ *                  value:
+ *                    message: Somente arquivos .txt são aceitos.
+ *                required-size:
+ *                  summary: verify file size
+ *                  value:
+ *                    message: Tamanho máximo de 5MB.
  *       401:
- *         description: Error
+ *         description: Authentication
  *         content:
  *          application/json:
  *            schema:
@@ -79,8 +77,13 @@ const uploadRoutes = Router()
  *                file:
  *                  type: string
  *                  format: binary
- * 
+ *
  */
-uploadRoutes.post('/transaction-file', upload.single('file'), authentication, TransactionFile)
+uploadRoutes.post(
+  '/transaction-file',
+  upload.single('file'),
+  authentication,
+  TransactionFile
+)
 
 export { uploadRoutes }
