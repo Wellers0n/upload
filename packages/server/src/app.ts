@@ -16,9 +16,6 @@ import swaggerJson from '../swagger.json'
 
 import './models'
 
-const port = process.env.PORT || 3001
-const environment = process.env.ENVIRONMENT || 'development'
-
 const app = express()
 
 import * as dotenv from 'dotenv'
@@ -45,7 +42,4 @@ app.use(
   })
 )
 
-app.listen(port, () => {
-  console.log(`We are live on ${port}`)
-  console.log(`Environment: ${environment}`)
-})
+export default app
