@@ -8,8 +8,6 @@ const healthRoutes = Router()
  * @swagger
  * /:
  *   get:
- *     security: 
- *       - token: []
  *     description: health
  *     tags: ["Health"]
  *     responses:
