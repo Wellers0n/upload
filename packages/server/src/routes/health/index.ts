@@ -1,12 +1,11 @@
 import { Router } from 'express'
 import HealthController from '../../controllers/HealthController'
-import { authentication } from '../../middleware/authentication'
 
 const healthRoutes = Router()
 
 /**
  * @swagger
- * /:
+ * /health:
  *   get:
  *     description: health
  *     tags: ["Health"]
@@ -40,6 +39,6 @@ const healthRoutes = Router()
  *                message: Não autorizado!
  *                error: true
  */
-healthRoutes.get('/', authentication, HealthController)
+healthRoutes.get('/health', HealthController)
 
 export { healthRoutes }

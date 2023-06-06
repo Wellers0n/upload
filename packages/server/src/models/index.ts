@@ -6,6 +6,7 @@ import * as pg from 'pg'
 const basename = path.basename(__filename)
 const db: any = {}
 const host = process.env.POSTGRES_HOST || 'localhost'
+
 console.log({ host })
 const sequelize = new Sequelize({
   host,
