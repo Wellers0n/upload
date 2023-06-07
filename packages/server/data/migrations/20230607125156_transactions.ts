@@ -6,7 +6,7 @@ export async function up(knex: Knex): Promise<void> {
     .createTable('transactions', function (table) {
       table.increments('id').primary()
       table.integer('user_id').unsigned()
-      table.foreign('user_id').references('id').inTable("users").deferrable('deferred')
+      table.foreign('user_id').references('id').inTable("users")
       table.integer('type').notNullable()
       table.timestamp('date').notNullable()
       table.string('product').notNullable()
