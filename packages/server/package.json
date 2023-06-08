@@ -5,13 +5,24 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "build": "tsup src/server.ts ",
+    "build": "tsup src/server.ts --minify",
     "clear": "rimraf ./dist",
     "start": "node dist/server.js",
     "test": "ENVIRONMENT=test jest --detectOpenHandles",
     "migrate": "npx knex migrate:latest",
     "unmigrate": "npx knex migrate:rollback",
     "seed": "yarn unmigrate && yarn migrate && npx knex seed:run"
+  },
+  "peerDependencies": {
+    "@mikro-orm/mongodb": "x",
+    "@mikro-orm/mysql": "x",
+    "@mikro-orm/mariadb": "x",
+    "@mikro-orm/sqlite": "x",
+    "@mikro-orm/entity-generator": "x",
+    "@mikro-orm/migrations": "x",
+    "typeorm": "x",
+    "slonik": "x",
+    "pg-promise": "x"
   },
   "author": "Wellerson",
   "license": "ISC",

@@ -1,10 +1,16 @@
 import { Request, Response } from 'express'
-import ListTransactionsServices from '../../services/TransactionServices/ListTransactions'
-import { getUser } from '../../services/SessionServices/Auth'
+import ListTransactionsServices from '@/services/TransactionServices/ListTransactions'
+import { getUser } from '@/services/SessionServices/Auth'
 
 const List = async (request: Request, response: Response) => {
   try {
     const user = await getUser(request?.headers?.authorization)
+
+    if (!user) {
+      return response.status(401).json({
+        message: 'Não autorizado!'
+      })
+    }
 
     const { limit = 10, offset = 0 } = request.query
 

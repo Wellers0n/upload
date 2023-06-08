@@ -1,6 +1,6 @@
 import knex, { Knex } from 'knex'
 import { newDb } from 'pg-mem'
-import knexfile from './knexfile'
+import knexfile from '../knexfile'
 
 const mem = newDb()
 

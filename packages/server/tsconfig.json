@@ -111,9 +111,11 @@
       "@/services/*": ["./src/services/*"],
       "@/models/*": ["./src/models/*"],
       "@/controllers/*": ["./src/controllers/*"],
-      "@/utils/*": ["./src/utils/*"]
+      "@/utils/*": ["./src/utils/*"],
+      "@/types": ["./types.d.ts"],
+      "@/database": ["src/database.ts"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "src/database.ts"],
   "exclude": ["node_modules", "src/**/*.test.ts", "src/**/*.spec.ts"]
 }

@@ -1,4 +1,5 @@
-import db from '../../models'
+import { User } from '@/types'
+import database from '@/database'
 import { generateToken } from './Auth'
 import bcrypt from 'bcryptjs'
 
@@ -7,7 +8,10 @@ type LoginType = {
   password: string
 }
 const Login = async ({ email, password }: LoginType) => {
-  const user = await db.Users.findOne({ where: { email: email.toLowerCase() } })
+
+  const user = await database<User>('users')
+    .where({ email: email.toLowerCase() })
+    .first()
 
   if (!user) {
     return {

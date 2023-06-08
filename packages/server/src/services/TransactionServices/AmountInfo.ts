@@ -1,38 +1,48 @@
-import db from '../../models'
+import database from '@/database'
+import { User } from '@/types'
 
-type ListType = {
-  user: { id: number }
+type AmountType = {
+  user: User
 }
-const List = async ({ user }: ListType) => {
-  const commissionPaid = await db.Transactions.sum('amount', {
-    where: { user_id: user.id, description: 'Comissão paga' }
-  })
-  const commissionReceived = await db.Transactions.sum('amount', {
-    where: { user_id: user.id, description: 'Comissão recebida' }
-  })
 
-  const affiliateSelling = await db.Transactions.sum('amount', {
-    where: { user_id: user.id, description: 'Venda afiliado' }
-  })
+const List = async ({ user }: AmountType) => {
+  const commissionPaid = await database('transactions')
+    .sum('amount')
+    .where({ user_id: user.id, description: 'Comissão paga' })
+    .first()
 
-  const producerSale = await db.Transactions.sum('amount', {
-    where: { user_id: user.id, description: 'Venda produtor' }
-  })
+  const commissionReceived = await database('transactions')
+    .sum('amount')
+    .where({ user_id: user.id, description: 'Comissão recebida' })
+    .first()
+
+  const affiliateSelling = await database('transactions')
+    .sum('amount')
+    .where({ user_id: user.id, description: 'Venda afiliado' })
+    .first()
+
+  const producerSale = await database('transactions')
+    .sum('amount')
+    .where({ user_id: user.id, description: 'Venda produtor' })
+    .first()
 
   return {
-    commissionReceived: (commissionReceived / 100).toLocaleString('pt-br', {
+    commissionReceived: (commissionReceived?.sum / 100).toLocaleString(
+      'pt-br',
+      {
+        style: 'currency',
+        currency: 'BRL'
+      }
+    ),
+    commissionPaid: (commissionPaid?.sum / 100).toLocaleString('pt-br', {
       style: 'currency',
       currency: 'BRL'
     }),
-    commissionPaid: (commissionPaid / 100).toLocaleString('pt-br', {
+    affiliateSelling: (affiliateSelling?.sum / 100).toLocaleString('pt-br', {
       style: 'currency',
       currency: 'BRL'
     }),
-    affiliateSelling: (affiliateSelling / 100).toLocaleString('pt-br', {
-      style: 'currency',
-      currency: 'BRL'
-    }),
-    producerSale: (producerSale / 100).toLocaleString('pt-br', {
+    producerSale: (producerSale?.sum / 100).toLocaleString('pt-br', {
       style: 'currency',
       currency: 'BRL'
     })
