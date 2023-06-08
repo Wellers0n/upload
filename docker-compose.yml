@@ -34,7 +34,7 @@ services:
       - '3001:3001'
       - '5173:5173'
     environment:
-      - POSTGRES_HOST=locahost
+      - POSTGRES_HOST=postgres-db
       - POSTGRES_PORT=5432
       - POSTGRES_DATABASE=postgres
       - POSTGRES_USER=postgres

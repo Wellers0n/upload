@@ -26,7 +26,7 @@ const List = async ({ limit, offset, user }: ListType) => {
 
   return {
     transactions: transactionFormattingData(transactions),
-    totalPages: Math.round(Number(totalPages?.count) / limit)
+    totalPages: Math.ceil(Number(totalPages?.count) / limit)
   }
 }
 
