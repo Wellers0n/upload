@@ -11,6 +11,7 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=postgres
+      - POSTGRES_DATABASE=postgres
       - POSTGRES_HOST=postgres:postgres@postgres-db:5432
     logging:
         options:
@@ -34,6 +35,10 @@ services:
       - '5173:5173'
     environment:
       - POSTGRES_HOST=postgres-db
+      - POSTGRES_PORT=5432
+      - POSTGRES_DATABASE=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
     depends_on:
       - postgres-db
     links:

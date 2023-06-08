@@ -5,11 +5,24 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "build": "tsup src/server.ts ",
+    "build": "tsup src/server.ts --minify",
     "clear": "rimraf ./dist",
     "start": "node dist/server.js",
     "test": "ENVIRONMENT=test jest --detectOpenHandles",
-    "migrate": "DATABASE_URL=postgres://postgres:postgres@localhost:5432/postgres node-pg-migrate"
+    "migrate": "npx knex migrate:latest",
+    "unmigrate": "npx knex migrate:rollback",
+    "seed": "yarn unmigrate && yarn migrate && npx knex seed:run"
+  },
+  "peerDependencies": {
+    "@mikro-orm/mongodb": "x",
+    "@mikro-orm/mysql": "x",
+    "@mikro-orm/mariadb": "x",
+    "@mikro-orm/sqlite": "x",
+    "@mikro-orm/entity-generator": "x",
+    "@mikro-orm/migrations": "x",
+    "typeorm": "x",
+    "slonik": "x",
+    "pg-promise": "x"
   },
   "author": "Wellerson",
   "license": "ISC",
@@ -25,6 +38,7 @@
     "express-http-context": "1.2.4",
     "express-promise-router": "4.1.0",
     "jsonwebtoken": "^8.5.1",
+    "knex": "^2.4.2",
     "lodash": "4.17.21",
     "mime": "^3.0.0",
     "morgan": "^1.10.0",

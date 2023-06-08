@@ -1,7 +1,7 @@
+import { User } from '@/types'
 import getTransactionType from './getTransactionType'
 
-const transactionFormattingFile = (transactionFile: string[], user: { id: number }) => {
-
+const transactionFormattingFile = (transactionFile: string[], user: User) => {
   return transactionFile.map((transaction: string) => {
     const type = Number(transaction.slice(0, 1))
     const date = transaction.slice(1, 26)
@@ -21,6 +21,8 @@ const transactionFormattingFile = (transactionFile: string[], user: { id: number
         ...transactionType
       }
     }
+
+    return []
   })
 }
 

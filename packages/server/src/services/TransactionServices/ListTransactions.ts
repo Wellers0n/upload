@@ -1,5 +1,6 @@
-import db from '../../models'
+import database from '@/database'
 import transactionFormattingData from './helpers/transactionFormattingData'
+import { Transaction } from '@/types'
 
 type ListType = {
   limit: number
@@ -7,19 +8,25 @@ type ListType = {
   user: { id: number }
 }
 const List = async ({ limit, offset, user }: ListType) => {
-  const transactionAllAndCount = await db.Transactions.findAndCountAll({
-    where: {
+  const transactions = await database<Transaction>('transactions')
+    .select('*')
+    .where({
       user_id: user.id
-    },
-    limit,
-    offset: limit * offset,
-    subQuery: false,
-    order: [['id', 'DESC']]
-  })
+    })
+    .limit(limit)
+    .offset(limit * offset)
+    .orderBy('id', 'desc')
+
+  const totalPages = await database('transactions')
+    .where({
+      user_id: user.id
+    })
+    .count()
+    .first()
 
   return {
-    transactions: transactionFormattingData(transactionAllAndCount.rows),
-    totalPages: Math.round(transactionAllAndCount.count / limit)
+    transactions: transactionFormattingData(transactions),
+    totalPages: Math.ceil(Number(totalPages?.count) / limit)
   }
 }
 

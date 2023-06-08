@@ -1,16 +1,22 @@
 import { Request, Response } from 'express'
-import AmountInfoServices from '../../services/TransactionServices/AmountInfo'
-import { getUser } from '../../services/SessionServices/Auth'
+import AmountInfoServices from '@/services/TransactionServices/AmountInfo'
+import { getUser } from '@/services/SessionServices/Auth'
 
 const AmountInfo = async (request: Request, response: Response) => {
   try {
     const user = await getUser(request?.headers?.authorization)
 
+    if (!user) {
+      return response.status(401).json({
+        message: 'Não autorizado!'
+      })
+    }
+
     const {
       commissionPaid,
       commissionReceived,
       affiliateSelling,
-      producerSale,
+      producerSale
     } = await AmountInfoServices({
       user
     })
@@ -19,7 +25,7 @@ const AmountInfo = async (request: Request, response: Response) => {
       commissionPaid,
       commissionReceived,
       affiliateSelling,
-      producerSale,
+      producerSale
     })
   } catch (error) {
     return response.status(400).json({

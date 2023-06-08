@@ -1,6 +1,7 @@
-import db from '../../models'
+import database from '@/database'
 import { generateToken } from './Auth'
 import bcrypt from 'bcryptjs'
+import { User } from '@/types'
 
 type RegisterType = {
   name: string
@@ -8,7 +9,11 @@ type RegisterType = {
   password: string
 }
 const Register = async ({ name, email, password }: RegisterType) => {
-  const user = await db.Users.findOne({ where: { email: email.toLowerCase() } })
+  const user = await database<User>('users')
+    .where({
+      email: email.toLowerCase()
+    })
+    .first()
 
   if (user) {
     return {
@@ -18,11 +23,24 @@ const Register = async ({ name, email, password }: RegisterType) => {
     }
   }
 
-  const userCreated = await db.Users.create({
+  const passwordBcrypt = bcrypt.hashSync(password, 8)
+
+  await database('users').insert({
     name,
     email,
-    password: bcrypt.hashSync(password, 8)
+    password: passwordBcrypt
   })
+
+  const userCreated = await database<User>('users')
+    .where({ email, password: passwordBcrypt })
+    .first()
+
+  if (!userCreated)
+    return {
+      status: 404,
+      token: null,
+      message: 'Usuário não encontrado!'
+    }
 
   return {
     status: 201,

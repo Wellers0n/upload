@@ -54,6 +54,10 @@ const uploadRoutes = Router()
  *                  summary: verify file size
  *                  value:
  *                    message: Tamanho máximo de 5MB.
+ *                service-error:
+ *                  summary: service error
+ *                  value:
+ *                    message: Algo deu errado ao tentar fazer o upload.
  *       401:
  *         description: Authentication
  *         content:

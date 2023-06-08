@@ -1,16 +1,6 @@
+import { Transaction } from '@/types'
 import moment from 'moment'
 
-type Transaction = {
-  user_id: number
-  type: string
-  date: string
-  product: string
-  description: string
-  nature: string
-  signal: string
-  amount: number
-  seller: string
-}
 const transactionFormattingData = (transactions: Transaction[]) => {
   return transactions.map(transaction => {
     if (transaction) {

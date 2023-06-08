@@ -1,24 +1,23 @@
 import jwt from 'jsonwebtoken'
-import db from '../../models'
+import database from '@/database'
+import { User } from '@/types'
 
 export async function getUser(token: string | undefined) {
-  if (!token) return { user: null }
+  if (!token) return
 
   try {
     const decodedToken: any = jwt.verify(token, 'batman')
 
-    const user = await db.Users.findOne({ where: { id: decodedToken.id } })
+    const user = await database<User>('users')
+      .where({ id: decodedToken.id })
+      .first()
 
     return user
   } catch (err) {
-    return { user: null }
+    return
   }
 }
 
-type UserType = {
-  id: string
-}
-
-export function generateToken(user: UserType) {
+export function generateToken(user: User) {
   return jwt.sign({ id: user?.id }, 'batman')
 }
