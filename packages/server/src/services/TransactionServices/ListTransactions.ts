@@ -17,7 +17,12 @@ const List = async ({ limit, offset, user }: ListType) => {
     .offset(limit * offset)
     .orderBy('id', 'desc')
 
-  const totalPages = await database('transactions').count().first()
+  const totalPages = await database('transactions')
+    .where({
+      user_id: user.id
+    })
+    .count()
+    .first()
 
   return {
     transactions: transactionFormattingData(transactions),
