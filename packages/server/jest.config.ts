@@ -28,8 +28,8 @@ const config: Config.InitialOptions = {
     '^@/utils/(.*)$': '<rootDir>/src/utils/$1'
   },
   restoreMocks: true,
-  reporters: ['default']
-  // setupFilesAfterEnv: ["./jest.setup.ts"],
+  reporters: ['default'],
+  setupFilesAfterEnv: ["./jest.setup.ts"],
 }
 
 export default config
