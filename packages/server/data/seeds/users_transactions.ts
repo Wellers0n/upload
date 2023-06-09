@@ -30,32 +30,87 @@ export async function seed(knex: Knex): Promise<void> {
       date: '2023-06-07 11:04:34.482246-03',
       product: 'product 1',
       amount: 12000,
-      seller: "Vendedor 1",
-      description: 'some description here',
+      seller: 'Vendedor 1',
+      description: 'Venda produtor',
+      nature: 'nature 1',
+      signal: '+'
+    },
+    {
+      user_id: 1,
+      type: 1,
+      date: '2023-06-07 11:04:34.482246-03',
+      product: 'product 1',
+      amount: 12000,
+      seller: 'Vendedor 1',
+      description: 'Comissão recebida',
+      nature: 'nature 1',
+      signal: '+'
+    },
+    {
+      user_id: 1,
+      type: 1,
+      date: '2023-06-07 11:04:34.482246-03',
+      product: 'product 1',
+      amount: 12000,
+      seller: 'Vendedor 1',
+      description: 'Venda afiliado',
+      nature: 'nature 1',
+      signal: '+'
+    },
+    {
+      user_id: 1,
+      type: 1,
+      date: '2023-06-07 11:04:34.482246-03',
+      product: 'product 1',
+      amount: 12000,
+      seller: 'Vendedor 1',
+      description: 'Comissão paga',
+      nature: 'nature 1',
+      signal: '-'
+    },
+    {
+      user_id: 2,
+      type: 1,
+      date: '2023-06-07 11:04:34.482246-03',
+      product: 'product 1',
+      amount: 12000,
+      seller: 'Vendedor 1',
+      description: 'Venda produtor',
       nature: 'nature 1',
       signal: '+'
     },
     {
       user_id: 2,
-      type: 2,
+      type: 1,
       date: '2023-06-07 11:04:34.482246-03',
-      product: 'product 2',
-      seller: "Vendedor 2",
+      product: 'product 1',
       amount: 12000,
-      description: 'some description here',
-      nature: 'nature 2',
-      signal: '-'
+      seller: 'Vendedor 1',
+      description: 'Comissão recebida',
+      nature: 'nature 1',
+      signal: '+'
     },
     {
       user_id: 2,
-      type: 3,
+      type: 1,
       date: '2023-06-07 11:04:34.482246-03',
-      product: 'product 3',
+      product: 'product 1',
       amount: 12000,
-      seller: "Vendedor 3",
-      description: 'some description here',
-      nature: 'nature 3',
+      seller: 'Vendedor 1',
+      description: 'Venda afiliado',
+      nature: 'nature 1',
       signal: '+'
+    },
+    {
+      user_id: 2,
+      type: 1,
+      date: '2023-06-07 11:04:34.482246-03',
+      product: 'product 1',
+      amount: 12000,
+      seller: 'Vendedor 1',
+      description: 'Comissão paga',
+      nature: 'nature 1',
+      signal: '-'
     }
   ])
 }
