@@ -30,7 +30,7 @@ describe('POST /session/register CONTROLLER', () => {
       token: null
     })
   })
-  it('response register controller without email', async () => {
+  it('response register controller without valid email', async () => {
     const response = await request(app)
       .post('/session/register')
       .send({
