@@ -42,7 +42,7 @@ yarn
 #### Mac
 
 ```sh
-brew services stop postgresql
+brew services stop --all
 ```
 
 #### Linux
@@ -91,12 +91,12 @@ run application:
 ```
 
 
-## Run migrations
+## Run migrations and seed
 
 - NOTE: Wait for docker-compose or start postgres locally, to run the following command
 
 ```sh
-yarn migrate:server up
+yarn seed:server
 ```
 
 ## Listening in
@@ -114,6 +114,7 @@ Visit [http://localhost:3001/docs/](http://localhost:3001/docs/) for more inform
 [ReactJS](https://reactjs.org/)<br/>
 [KoaJS](https://koajs.com/)<br/>
 [Postgresql](https://www.postgresql.org/)<br/>
+[Knex](https://knexjs.org/)<br/>
 [Docker](https://www.docker.com/)<br/>
 [Jest](https://jestjs.io/pt-BR/)<br/>
 [Swagger](https://swagger.io/)<br/>
