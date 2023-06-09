@@ -11,7 +11,7 @@ const Login = async (request: Request, response: Response) => {
         })
         .email('Email inválido'),
       password: z.string({
-        required_error: 'Senha é obrigatório'
+        required_error: 'Senha é obrigatória'
       })
     })
 

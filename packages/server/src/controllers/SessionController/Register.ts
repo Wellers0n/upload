@@ -14,17 +14,11 @@ const Register = async (request: Request, response: Response) => {
         })
         .email('Email inválido'),
       password: z.string({
-        required_error: 'Senha é obrigatório'
+        required_error: 'Senha é obrigatória'
       })
     })
 
     const { name, email, password } = createUserSchema.parse(request.body)
-
-    if (!name || !email || !password) {
-      return response
-        .status(400)
-        .json({ token: null, message: 'Nome, email e senha são obrigatórios' })
-    }
 
     const { token, message, status } = await RegisterServices({
       name,
