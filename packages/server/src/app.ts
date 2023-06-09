@@ -14,8 +14,6 @@ import { tmpFolder } from './helpers/tmpFolder'
 // @ts-ignore
 import swaggerJson from '../swagger.json'
 
-import './models'
-
 const app = express()
 
 import * as dotenv from 'dotenv'
