@@ -14,8 +14,7 @@ export const authentication = async (
     jwt.verify(authorization, JWT_SECRET, (err, decoded) => {
       if (err) {
         return response.status(401).json({
-          message: 'Não autorizado!',
-          error: true
+          message: 'Não autorizado!'
         })
       }
 
@@ -24,8 +23,7 @@ export const authentication = async (
     })
   } else {
     return response.status(401).json({
-      message: 'Não autorizado!',
-      error: true
+      message: 'Não autorizado!'
     })
   }
 }
