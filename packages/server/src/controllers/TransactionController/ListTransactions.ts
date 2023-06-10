@@ -7,8 +7,8 @@ const List = async (request: Request, response: Response) => {
     const user = await getUser(request?.headers?.authorization)
 
     if (!user) {
-      return response.status(401).json({
-        message: 'Não autorizado!'
+      return response.status(404).json({
+        message: 'Usuário não encontrado'
       })
     }
 

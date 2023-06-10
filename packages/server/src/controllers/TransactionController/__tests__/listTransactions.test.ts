@@ -94,10 +94,10 @@ describe('POST /transactions/list', () => {
       )
       .set('Accept', 'application/json')
 
-    expect(response.statusCode).toBe(401)
+    expect(response.statusCode).toBe(404)
 
     expect(response.body).toEqual({
-      message: 'Não autorizado!'
+      message: 'Usuário não encontrado'
     })
   })
 })

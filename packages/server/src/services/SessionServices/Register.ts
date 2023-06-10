@@ -8,6 +8,7 @@ type RegisterType = {
   email: string
   password: string
 }
+
 const Register = async ({ name, email, password }: RegisterType) => {
   const user = await database<User>('users')
     .where({
@@ -17,7 +18,7 @@ const Register = async ({ name, email, password }: RegisterType) => {
 
   if (user) {
     return {
-      status: 400,
+      status: 409,
       token: null,
       message: 'Usuário já existe'
     }
