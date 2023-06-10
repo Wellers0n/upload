@@ -73,7 +73,7 @@ describe('POST /transactions/list', () => {
       ]
     })
   })
-  it('response transactiosn list middleware test', async () => {
+  it('response transactiosn list middleware', async () => {
     const response = await request(app)
       .get('/transaction/list')
       .set('Authorization', 'admin')
@@ -85,7 +85,7 @@ describe('POST /transactions/list', () => {
       message: 'Não autorizado!'
     })
   })
-  it('response transactiosn list authentication user', async () => {
+  it('response transactiosn list authentication user wrong', async () => {
     const response = await request(app)
       .get('/transaction/list')
       .set(
