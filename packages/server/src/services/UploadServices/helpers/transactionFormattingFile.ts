@@ -22,7 +22,7 @@ const transactionFormattingFile = (transactionFile: string[], user: User) => {
       }
     }
 
-    return []
+    return 
   })
 }
 

@@ -11,7 +11,7 @@ const TransactionFile = async (request: Request, response: Response) => {
     const createFileSchema = z.object({
       file: z
         .any()
-        .refine(file => !!file, 'Arquivo é obrigatório.')
+        .refine(file => !!file.size, 'Arquivo é obrigatório.')
         .refine(
           file => file.mimetype === 'text/plain',
           'Somente arquivos .txt são aceitos.'
@@ -26,7 +26,7 @@ const TransactionFile = async (request: Request, response: Response) => {
     const user = await getUser(request?.headers?.authorization)
 
     if (!user) {
-      return response.status(401).json({ message: 'Não autorizado!' })
+      return response.status(404).json({ message: 'Usuário não encontrado' })
     }
 
     const { message, status } = await UploadTransactionFile(fileName, user)
@@ -34,7 +34,6 @@ const TransactionFile = async (request: Request, response: Response) => {
     return response.status(status).json({ message })
   } catch (error) {
     if (error instanceof ZodError) {
-      console.log(error)
       return response.status(400).json({ message: error.errors[0].message })
     }
   }

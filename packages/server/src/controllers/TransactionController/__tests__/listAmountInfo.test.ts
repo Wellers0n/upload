@@ -32,7 +32,7 @@ describe('POST /transactions/list', () => {
       producerSale: 'R$\u00A0120,00'
     })
   })
-  it('response amount-info middleware test', async () => {
+  it('response amount-info auth middleware', async () => {
     const response = await request(app)
       .get('/transaction/amount-info')
       .set('Authorization', 'admin')
@@ -45,7 +45,7 @@ describe('POST /transactions/list', () => {
     })
   })
 
-  it('response amount-info authentication user', async () => {
+  it('response amount-info with authentication user wrong', async () => {
     const response = await request(app)
       .get('/transaction/amount-info')
       .set(
