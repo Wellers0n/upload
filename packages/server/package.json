@@ -44,12 +44,12 @@
     "moment": "^2.29.4",
     "morgan": "^1.10.0",
     "multer": "^1.4.4",
+    "nanoid": "^4.0.2",
     "node-pg-migrate": "^6.2.2",
     "pg": "^8.8.0",
     "pg-native": "^3.0.1",
     "swagger-jsdoc": "^6.2.5",
     "swagger-ui-express": "^4.6.0",
-    "uuidv4": "6.2.12",
     "zod": "^3.21.4"
   },
   "devDependencies": {
