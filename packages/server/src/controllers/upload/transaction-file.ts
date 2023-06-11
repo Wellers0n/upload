@@ -1,11 +1,11 @@
 import { Request, Response } from 'express'
 import { resolve } from 'path'
 import { tmpFolder } from '@/helpers/tmpFolder'
-import UploadTransactionFile from '@/services/UploadServices/UploadTransactionFile'
+import transactionFileService from '@/services/upload/transaction-file'
 import { getUser } from '@/services/session/auth'
 import z, { ZodError } from 'zod'
 
-const TransactionFile = async (request: Request, response: Response) => {
+const transactionFile = async (request: Request, response: Response) => {
   try {
     const MAX_FILE_SIZE = 500000
     const createFileSchema = z.object({
@@ -29,7 +29,7 @@ const TransactionFile = async (request: Request, response: Response) => {
       return response.status(404).json({ message: 'Usuário não encontrado' })
     }
 
-    const { message, status } = await UploadTransactionFile(fileName, user)
+    const { message, status } = await transactionFileService(fileName, user)
 
     return response.status(status).json({ message })
   } catch (error) {
@@ -39,4 +39,4 @@ const TransactionFile = async (request: Request, response: Response) => {
   }
 }
 
-export default TransactionFile
+export default transactionFile
