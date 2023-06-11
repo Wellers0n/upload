@@ -1,8 +1,8 @@
 import { Router } from 'express'
-import TransactionFile from '../../controllers/UploadController/TransactionFile'
-import { storage } from '../../middleware/upload'
+import transactionFileController from '@/controllers/upload/transaction-file'
 import multer from 'multer'
-import { authentication } from '../../middleware/authentication'
+import { authentication } from '@/middleware/authentication'
+import { storage } from '@/middleware/upload'
 
 const upload = multer({
   storage: storage()
@@ -43,7 +43,7 @@ const uploadRoutes = Router()
  *                  type: ["string", "null"]
  *            examples:
  *                required:
- *                  summary: field required
+ *                  summary: file required
  *                  value:
  *                    message: Arquivo é obrigatório.
  *                required-txt:
@@ -69,6 +69,17 @@ const uploadRoutes = Router()
  *                  type: string
  *              example:
  *                message: Não autorizado!
+ *       404:
+ *         description: Authentication
+ *         content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                message:
+ *                  type: string
+ *              example:
+ *                message: Usuário não encontrado
  *     requestBody:
  *       required: true
  *       content:
@@ -87,7 +98,7 @@ uploadRoutes.post(
   '/transaction-file',
   upload.single('file'),
   authentication,
-  TransactionFile
+  transactionFileController
 )
 
 export { uploadRoutes }

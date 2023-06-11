@@ -3,7 +3,7 @@ import { User } from '@/types'
 import transactionFormattingFile from './helpers/transactionFormattingFile'
 import database from '@/database'
 
-const UploadTransactionFileService = async (fileName: string, user: User) => {
+const transactionFile = async (fileName: string, user: User) => {
   try {
     const contents = await fsPromises.readFile(fileName, 'utf-8')
 
@@ -19,4 +19,4 @@ const UploadTransactionFileService = async (fileName: string, user: User) => {
   }
 }
 
-export default UploadTransactionFileService
+export default transactionFile
