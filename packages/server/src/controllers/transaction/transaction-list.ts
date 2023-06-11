@@ -1,8 +1,8 @@
 import { Request, Response } from 'express'
-import ListTransactionsServices from '@/services/TransactionServices/ListTransactions'
+import transactionListService from '@/services/transaction/transaction-list'
 import { getUser } from '@/services/session/auth'
 
-const List = async (request: Request, response: Response) => {
+const transactionList = async (request: Request, response: Response) => {
   try {
     const user = await getUser(request?.headers?.authorization)
 
@@ -14,7 +14,7 @@ const List = async (request: Request, response: Response) => {
 
     const { limit = 10, offset = 0 } = request.query
 
-    const { transactions, totalPages } = await ListTransactionsServices({
+    const { transactions, totalPages } = await transactionListService({
       offset: Number(offset),
       limit: Number(limit),
       user
@@ -33,4 +33,4 @@ const List = async (request: Request, response: Response) => {
   }
 }
 
-export default List
+export default transactionList

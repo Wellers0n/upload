@@ -5,7 +5,7 @@ type AmountType = {
   user: User
 }
 
-const List = async ({ user }: AmountType) => {
+const amountInfo = async ({ user }: AmountType) => {
   const commissionPaid = await database('transactions')
     .sum('amount')
     .where({ user_id: user.id, description: 'Comissão paga' })
@@ -49,4 +49,4 @@ const List = async ({ user }: AmountType) => {
   }
 }
 
-export default List
+export default amountInfo
