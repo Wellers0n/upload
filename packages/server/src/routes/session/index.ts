@@ -1,6 +1,6 @@
 import { Router } from 'express'
-import LoginController from '../../controllers/SessionController/Login'
-import RegisterController from '../../controllers/SessionController/Register'
+import LoginController from '@/controllers/session/login'
+import RegisterController from '@/controllers/session/register'
 
 const sessionRoutes = Router()
 
@@ -37,10 +37,20 @@ const sessionRoutes = Router()
  *                token: 
  *                  type: ["string", "null"]
  *            examples:
- *                required:
- *                  summary: fields required
+ *                required-email:
+ *                  summary: email required
  *                  value:
- *                    message: Email e senha são obrigatórios
+ *                    message: Email é obrigatório
+ *                    token: null
+ *                required-password:
+ *                  summary: password required
+ *                  value:
+ *                    message: Senha é obrigatória
+ *                    token: null
+ *                required-valid-email:
+ *                  summary: email invalid
+ *                  value:
+ *                    message: Email inválido
  *                    token: null
  *                user:
  *                  summary: verify credentials
