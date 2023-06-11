@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import LoginController from '@/controllers/session/login'
+import loginController from '@/controllers/session/login'
 import RegisterController from '@/controllers/session/register'
 
 const sessionRoutes = Router()
@@ -74,7 +74,7 @@ const sessionRoutes = Router()
  *                password:
  *                  type: string
  */
-sessionRoutes.post('/login', LoginController)
+sessionRoutes.post('/login', loginController)
 
 /**
  * @swagger
