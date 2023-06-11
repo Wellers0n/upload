@@ -7,7 +7,7 @@ type ListType = {
   offset: number
   user: { id: number }
 }
-const List = async ({ limit, offset, user }: ListType) => {
+const transactionsList = async ({ limit, offset, user }: ListType) => {
   const transactions = await database<Transaction>('transactions')
     .select('*')
     .where({
@@ -30,4 +30,4 @@ const List = async ({ limit, offset, user }: ListType) => {
   }
 }
 
-export default List
+export default transactionsList

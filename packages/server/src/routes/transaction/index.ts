@@ -1,7 +1,7 @@
 import { Router } from 'express'
-import ListTransactionsController from '../../controllers/TransactionController/ListTransactions'
-import ListAmountInfoController from '../../controllers/TransactionController/ListAmountInfo'
-import { authentication } from '../../middleware/authentication'
+import transactionListController from '@/controllers/transaction/transaction-list'
+import amountInfoController from '@/controllers/transaction/amount-info'
+import { authentication } from '@/middleware/authentication'
 
 const transactionRoutes = Router()
 
@@ -36,30 +36,24 @@ const transactionRoutes = Router()
  *                  type: array
  *              example:
  *                transactions: [{
- *                                 "id": 38,
- *                                 "type": 1,
- *                                 "date": "2022-03-01T05:09:54.000Z",
- *                                 "product": "CURSO DE BEM-ESTAR",
- *                                 "amount": 12750,
- *                                 "seller": "JOSE CARLOS",
- *                                 "description": "Venda produtor",
- *                                 "nature": "Entrada",
- *                                 "signal": "+",
- *                                 "createdAt": "2022-11-26T19:32:56.822Z",
- *                                 "updatedAt": "2022-11-26T19:32:56.822Z"
- *                             },
- *                             {
- *                                 "id": 35,
- *                                 "type": 4,
- *                                 "date": "2022-02-03T20:23:37.000Z",
- *                                 "product": "DESENVOLVEDOR FULL STACK",
- *                                 "amount": 50000,
- *                                 "seller": "ELIANA NOGUEIRA",
- *                                 "description": "Comissão recebida",
- *                                 "nature": "Entrada",
- *                                 "signal": "+",
- *                                 "createdAt": "2022-11-26T19:32:56.822Z",
- *                                 "updatedAt": "2022-11-26T19:32:56.822Z"
+ *                                  type: 1,
+ *                                  date: '07/06/2023',
+ *                                  product: 'product 1',
+ *                                  amount: 'R$ 120,00',
+ *                                  seller: 'Vendedor 1',
+ *                                  description: 'Comissão paga',
+ *                                  nature: 'nature 1',
+ *                                  signal: '-'
+ *                               },
+ *                               {
+ *                                  type: 1,
+ *                                  date: '07/06/2023',
+ *                                  product: 'product 1',
+ *                                  amount: 'R$ 120,00',
+ *                                  seller: 'Vendedor 1',
+ *                                  description: 'Venda afiliado',
+ *                                  nature: 'nature 1',
+ *                                  signal: '+'
  *                           }]
  *                limit: 10
  *                offset: 1
@@ -75,6 +69,17 @@ const transactionRoutes = Router()
  *                  type: string
  *              example:
  *                message: Não autorizado!
+ *       404:
+ *         description: Not found
+ *         content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                message:
+ *                  type: string
+ *              example:
+ *                message: 'Usuário não encontrado'
  *       400:
  *         description: Error
  *         content:
@@ -87,7 +92,7 @@ const transactionRoutes = Router()
  *              example:
  *                message: Error ao buscar a lista de transações!
  */
-transactionRoutes.get('/list', authentication, ListTransactionsController)
+transactionRoutes.get('/list', authentication, transactionListController)
 
 /**
  * @swagger
@@ -134,7 +139,18 @@ transactionRoutes.get('/list', authentication, ListTransactionsController)
  *                  type: string
  *              example:
  *                message: Error ao buscar os valores!
+ *       404:
+ *         description: Not found
+ *         content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                message:
+ *                  type: string
+ *              example:
+ *                message: Usuário não encontrado
  */
-transactionRoutes.get('/amount-info', authentication, ListAmountInfoController)
+transactionRoutes.get('/amount-info', authentication, amountInfoController)
 
 export { transactionRoutes }

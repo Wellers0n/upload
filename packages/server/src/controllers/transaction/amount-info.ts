@@ -1,8 +1,8 @@
 import { Request, Response } from 'express'
-import AmountInfoServices from '@/services/TransactionServices/AmountInfo'
+import amountInfoService from '@/services/transaction/amount-info'
 import { getUser } from '@/services/session/auth'
 
-const AmountInfo = async (request: Request, response: Response) => {
+const amountInfo = async (request: Request, response: Response) => {
   try {
     const user = await getUser(request?.headers?.authorization)
 
@@ -17,7 +17,7 @@ const AmountInfo = async (request: Request, response: Response) => {
       commissionReceived,
       affiliateSelling,
       producerSale
-    } = await AmountInfoServices({
+    } = await amountInfoService({
       user
     })
 
@@ -34,4 +34,4 @@ const AmountInfo = async (request: Request, response: Response) => {
   }
 }
 
-export default AmountInfo
+export default amountInfo
