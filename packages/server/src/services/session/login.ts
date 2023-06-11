@@ -1,6 +1,6 @@
 import { User } from '@/types'
 import database from '@/database'
-import { generateToken } from './Auth'
+import { generateToken } from './auth'
 import bcrypt from 'bcryptjs'
 
 type LoginType = {

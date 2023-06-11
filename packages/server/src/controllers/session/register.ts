@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import RegisterServices from '@/services/SessionServices/Register'
+import RegisterServices from '@/services/session/register'
 import z, { ZodError } from 'zod'
 
 const Register = async (request: Request, response: Response) => {

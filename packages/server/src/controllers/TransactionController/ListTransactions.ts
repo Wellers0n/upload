@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import ListTransactionsServices from '@/services/TransactionServices/ListTransactions'
-import { getUser } from '@/services/SessionServices/Auth'
+import { getUser } from '@/services/session/auth'
 
 const List = async (request: Request, response: Response) => {
   try {

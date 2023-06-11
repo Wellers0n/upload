@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import LoginServices from '@/services/SessionServices/Login'
+import LoginServices from '@/services/session/login'
 import z, { ZodError } from 'zod'
 
 const Login = async (request: Request, response: Response) => {

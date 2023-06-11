@@ -2,7 +2,7 @@ import { Request, Response } from 'express'
 import { resolve } from 'path'
 import { tmpFolder } from '@/helpers/tmpFolder'
 import UploadTransactionFile from '@/services/UploadServices/UploadTransactionFile'
-import { getUser } from '@/services/SessionServices/Auth'
+import { getUser } from '@/services/session/auth'
 import z, { ZodError } from 'zod'
 
 const TransactionFile = async (request: Request, response: Response) => {
