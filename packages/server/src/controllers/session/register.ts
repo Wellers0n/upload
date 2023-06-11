@@ -1,10 +1,13 @@
 import { Request, Response } from 'express'
-import LoginServices from '@/services/SessionServices/Login'
+import RegisterServices from '@/services/session/register'
 import z, { ZodError } from 'zod'
 
-const Login = async (request: Request, response: Response) => {
+const Register = async (request: Request, response: Response) => {
   try {
     const createUserSchema = z.object({
+      name: z.string({
+        required_error: 'Nome é obrigatório'
+      }),
       email: z
         .string({
           required_error: 'Email é obrigatório'
@@ -15,18 +18,21 @@ const Login = async (request: Request, response: Response) => {
       })
     })
 
-    const { email, password } = createUserSchema.parse(request.body)
+    const { name, email, password } = createUserSchema.parse(request.body)
 
-    const { message, token, status } = await LoginServices({ email, password })
+    const { token, message, status } = await RegisterServices({
+      name,
+      email,
+      password
+    })
 
     return response.status(status).json({ message, token })
   } catch (error) {
-    if (error instanceof ZodError) {
+    if (error instanceof ZodError)
       return response
         .status(400)
         .json({ message: error.errors[0].message, token: null })
-    }
   }
 }
 
-export default Login
+export default Register

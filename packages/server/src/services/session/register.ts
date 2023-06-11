@@ -1,5 +1,5 @@
 import database from '@/database'
-import { generateToken } from './Auth'
+import { generateToken } from './auth'
 import bcrypt from 'bcryptjs'
 import { User } from '@/types'
 

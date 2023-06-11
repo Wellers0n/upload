@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import AmountInfoServices from '@/services/TransactionServices/AmountInfo'
-import { getUser } from '@/services/SessionServices/Auth'
+import { getUser } from '@/services/session/auth'
 
 const AmountInfo = async (request: Request, response: Response) => {
   try {
