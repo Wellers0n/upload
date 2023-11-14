@@ -69,28 +69,6 @@ At the root directory, run the following command:
  docker-compose up --build -d
 ```
 
-### Or locally via script
-
-- NOTE: If starting the application locally your need postgres installed in your machine
-
-you need to create a database and give access
-
-inside postgres:
-
-```ql
- CREATE DATABASE postgres;
- 
- CREATE ROLE postgres;
- 
- ALTER ROLE "postgres" WITH LOGIN;
-```
-
-run application:
-```sh
- yarn dev
-```
-
-
 ## Run migrations and seed
 
 - NOTE: Wait for docker-compose or start postgres locally, to run the following command
